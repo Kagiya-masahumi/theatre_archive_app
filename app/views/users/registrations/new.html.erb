@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        新規登録画面【団体用】
+        新規登録画面【個人用】
       </h1>
     </div>
   </div>
@@ -12,13 +12,15 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-5">
-        <%= form_for(resource, as: resource_name, url: new_group_registration_path(resource_name)) do |f| %>
+        <%# form_for(resource, as: resource_name, url: new_user_registration_path(resource_name)) do |f| %>
+        <%= form_with model: @user, url: user_registration_path, method: :post, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <%# form_for(resource, as: resource_name, url: user_registration_path) do |f| %> 
         <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="field">
-            <%= f.label :group_name ,class: "label"%>
+            <%= f.label :nickname ,class: "label"%>
             <p class="control has-icon-left">
-              <%= f.text_field :group_name, autofocus: true, autocomplete: "group_name", :placeholder => "団体名", class: "input" %>
+              <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", :placeholder => "ニックネーム", class: "input" %>
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
@@ -26,11 +28,10 @@
           </div>
 
 
-
           <div class="field">
             <%= f.label :email ,class: "label"%>
             <p class="control has-icon-left">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス", class: "input" %>
               <span class="icon is-small is-left">
                 <i class="far fa-envelope"></i>
               </span>
@@ -44,7 +45,7 @@
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %>
               <p class="control has-icon-left">
-              <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "input" %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "input" %>
                 <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
                 </span>
@@ -54,11 +55,23 @@
           <div class="field">
             <%= f.label :password_confirmation ,class: "label"%>
             <p class="control has-icon-left">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: "password confirmation" , class: "input"%>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: "パスワード再入力" , class: "input"%>
               <span class="icon is-small">
                 <i class="far fa-lock"></i>
               </span>
             </p>            
+          </div>
+
+
+          <div class="field">
+            <%= f.label :name ,class: "label"%>
+            <p class="control has-icon-left">
+            <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name", :placeholder => "例）山田", class: "input" %>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", :placeholder => "例）花子", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
           </div>
 
           <div class="actions">

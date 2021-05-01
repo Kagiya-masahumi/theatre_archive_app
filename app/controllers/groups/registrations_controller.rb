@@ -3,7 +3,25 @@
 class Groups::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  def new
+    @group = Group.new
+  end
 
+
+  def create
+    @group = Group.new(group_params)
+    if @group.save
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+
+  private
+  def group_params
+    params.require(:group).permit(:group_name, :email, :password, :password_confirmation, :chair_person)
+  end
   # GET /resource/sign_up
   # def new
   #   super
