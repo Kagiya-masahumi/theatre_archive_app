@@ -1,2 +1,8 @@
 <h1>ここにホームページ</h1>
-<%= current_group.id%>
+
+<% if group_signed_in? %>
+  <%= current_group.name %>
+<%elsif user_signed_in? %>
+  <%= current_user.nickname %>
+
+<% end %>

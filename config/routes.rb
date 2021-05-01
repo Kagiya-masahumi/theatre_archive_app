@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+ 
   resources :performances,only:[:index]
 
   root to: "performances#index"
@@ -16,8 +17,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :groups, only:[:new, :create]
-  resources :users, only:[:new, :create]
+  resources :groups
+  resources :users
 
   
 
