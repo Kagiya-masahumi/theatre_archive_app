@@ -3,6 +3,7 @@ class PerformancesController < ApplicationController
 
   def index
     @performances = Performance.all
+    
   end
 
   def show
@@ -22,11 +23,9 @@ class PerformancesController < ApplicationController
   end
 
   def create
-    binding.pry
     @performance = Performance.new(performance_params)
-    #@performance.group_id = current_group.id
     if @performance.save
-      redirect_to performance_path(@performance), notice: "投稿に成功しました。"
+      redirect_to performances_path(@performance), notice: "投稿に成功しました。"
     else
       render :new
       
@@ -52,7 +51,8 @@ class PerformancesController < ApplicationController
 
   private
   def performance_params
-    params.require(:performance).permit(:title, :explain, :player,:staff, :place, :start_date, :finish_date, :image).merge(group_id: current_group.id)
+    params.require(:performance).permit(:title, :explain, :player,:staff, :place, :start_date, :finish_date, :image)
+                                .merge(group_id: current_group.id)
   end
 
 end

@@ -51,13 +51,15 @@ ActiveRecord::Schema.define(version: 2021_04_30_115545) do
   create_table "performances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "explain", null: false
-    t.integer "start_date", null: false
-    t.integer "finish_date", null: false
+    t.date "start_date", null: false
+    t.date "finish_date", null: false
     t.string "place", null: false
     t.text "staff", null: false
     t.text "player", null: false
+    t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_performances_on_group_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -77,4 +79,5 @@ ActiveRecord::Schema.define(version: 2021_04_30_115545) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "performances", "groups"
 end

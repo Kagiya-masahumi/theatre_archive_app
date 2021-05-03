@@ -2,11 +2,36 @@
 <p>Find me in app/views/groups/index.html.erb</p>
 
 <h2>劇団一覧</h2>
-  <% @groups.each do |group| %>
-  <% if group.image != 0 %>
-    <%= image_tag 'no_image.png' %>
-  <% else %>
-    <%= image_tag group.image %>
-  <% end %>
-    <%= group.name %>
-  <% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @groups.each do |group| %>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-image">
+                <figure class="image">
+                  <%= link_to group_path(group) do %>
+                    <%= image_tag group.image %>
+                  <% end %>
+                </figure>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                    <div class="title"><%=link_to group.name, group_path(group) %></div>
+                </div>
+              </div>
+              <div class="content">
+                投稿数：<%= group.performances.count %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
