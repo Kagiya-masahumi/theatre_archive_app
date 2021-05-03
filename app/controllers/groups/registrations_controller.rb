@@ -11,6 +11,7 @@ class Groups::RegistrationsController < Devise::RegistrationsController
   def create
     @group = Group.new(group_params)
     if @group.save
+      bypass_sign_in(@group)
       redirect_to root_path
     else
       render :new
@@ -20,8 +21,10 @@ class Groups::RegistrationsController < Devise::RegistrationsController
 
   private
   def group_params
-    params.require(:group).permit(:name, :email, :password, :password_confirmation, :chair_person)
+    params.require(:group).permit(:name, :email, :password, :password_confirmation, :chair_person, :image)
   end
+
+  
   # GET /resource/sign_up
   # def new
   #   super

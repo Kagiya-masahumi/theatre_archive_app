@@ -1,6 +1,12 @@
 <h1>Groups#index</h1>
 <p>Find me in app/views/groups/index.html.erb</p>
 
-<% @group.each do |user|%>
-  <% group.name %>
-<% end %>
+<h2>劇団一覧</h2>
+  <% @groups.each do |group| %>
+  <% if group.image != 0 %>
+    <%= image_tag 'no_image.png' %>
+  <% else %>
+    <%= image_tag group.image %>
+  <% end %>
+    <%= group.name %>
+  <% end %>

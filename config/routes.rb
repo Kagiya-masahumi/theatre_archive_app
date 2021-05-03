@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   
- 
+
   resources :performances,only:[:index]
 
   root to: "performances#index"
-  
   
   devise_for :groups, controllers: {
     sessions:      'groups/sessions',

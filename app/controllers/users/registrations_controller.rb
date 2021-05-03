@@ -8,10 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new
   end
 
-
   def create
     @user = User.new(user_params)
     if @user.save
+      bypass_sign_in(@user)
       redirect_to root_path
     else
       render :new
@@ -19,9 +19,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :name, :family_name)
+    params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :name, :family_name, :image)
   end
+
+  
+
 # GET /resource/sign_up
   # def new
   #   super

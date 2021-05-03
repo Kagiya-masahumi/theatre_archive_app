@@ -8,7 +8,7 @@ class DeviseCreateGroups < ActiveRecord::Migration[6.0]
       t.string :encrypted_password, null: false, default: ""
       t.string :name, null: false
       t.string :chair_person, null: false
-      t.string :profile_image_id
+
 
       ## Recoverable
       t.string   :reset_password_token

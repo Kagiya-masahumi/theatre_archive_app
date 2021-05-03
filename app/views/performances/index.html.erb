@@ -1,8 +1,12 @@
 <h1>ここにホームページ</h1>
 
 <% if group_signed_in? %>
-  <%= current_group.name %>
-<%elsif user_signed_in? %>
-  <%= current_user.nickname %>
-
+  <%= "ようこそ、#{current_group.name}様" %>
+<% elsif user_signed_in? %>
+  <%= "ようこそ、#{current_user.nickname}様" %>
 <% end %>
+
+  
+
+
+
