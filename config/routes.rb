@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+
+  resources :performances
+
+  root to: "performances#index"
+  
   devise_for :groups, controllers: {
     sessions:      'groups/sessions',
     passwords:     'groups/passwords',
@@ -11,6 +16,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  resources :groups
+  resources :users
 
-  root to: "home#index"
+  
+
+  
 end

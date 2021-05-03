@@ -1,0 +1,59 @@
+<h1>ここにホームページ</h1>
+
+<% if group_signed_in? %>
+  <%= "ようこそ、#{current_group.name}様" %>
+<% elsif user_signed_in? %>
+  <%= "ようこそ、#{current_user.nickname}様" %>
+<% end %>
+
+  
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        公演一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @performances.each do |perform| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to performance_path(perform.id) do %>
+                  <%= image_tag perform.image %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                  <%# binding.pry %>
+                    <% link_to group_path(perform.group.id) do %>
+                      <%= image_tag perform.group.image %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="title"><%=link_to perform.group.name, group_path(perform.group) %></div>
+                </div>
+              </div>
+
+              <div class="content">
+                <time><%= perform.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+

@@ -4,7 +4,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      bypass_sign_in(@user)
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :name, :family_name, :image)
+  end
+
+  
+
+# GET /resource/sign_up
   # def new
   #   super
   # end

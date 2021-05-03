@@ -44,9 +44,10 @@
 | title             | string      | null: false                        |
 | explain           | text        | null: false                        |
 | staff_name        | text        | null: false                        |
-| theater           | string      | null: false                        |
-| start_day         | date        | null: false                        |
-| finish_day        | date        | null: false                        |
+| acting            | text        | null: false                        |
+| place             | string      | null: false                        |
+| start_date         | date        | null: false                        |
+| finish_date        | date        | null: false                        |
 | groups            | references  | null: false, foreign_key: true     |
 
 

@@ -1,0 +1,97 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        新規作成
+      </h1>
+    </div>
+  </div>
+</section>
+
+<% if @performance.errors.any? %>
+  <div class="notification is-danger">
+    <h2><%= pluralize(@performance.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <ul>
+      <% @performance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<%end%>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @performance do |f| %>
+          <div class="field">
+            <%= f.label :title, "公演名", class: "label" %>
+            <%= f.text_field :title , class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :explain , "公演内容" ,class: "label" %>
+            <%= f.text_area :explain , class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :player , "出演者" ,class: "label" %>
+            <%= f.text_area :player, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :staff , "スタッフ" ,class: "label" %>
+            <%= f.text_area :staff , class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :place , "劇場名" ,class: "label" %>
+            <%= f.text_field :place ,class: "input" %>
+          </div>
+
+          
+            <%= f.label :start_date , "公演開始日" ,class: "label" %>
+            <div class='input is-grouped'>
+              <%= raw sprintf(
+                          f.date_select(
+                            :start_date,
+                            class:'select-birth',
+                            id:"birth-date",
+                            use_month_numbers: true,
+                            prompt:'--',
+                            start_year: 1960,
+                            end_year: (Time.now.year ),
+                            date_separator: '%s'),
+                          "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+            </div>
+        
+
+          <div class="field">
+            <%= f.label :finish_date , "公演終了日" ,class: "label" %>
+            <div class='input is-grouped'>
+              <%= raw sprintf(
+                          f.date_select(
+                            :finish_date,
+                            class:'select-birth',
+                            id:"birth-date",
+                            use_month_numbers: true,
+                            prompt:'--',
+                            start_year: 1960,
+                            end_year: (Time.now.year),
+                            date_separator: '%s'),
+                          "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= f.label :image, "写真", class: "label" %>
+            <%= f.file_field :image, class: "input" %>
+          </div>
+
+            <%= f.submit '投稿', class: "button is-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+

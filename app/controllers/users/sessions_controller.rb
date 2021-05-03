@@ -1,8 +1,19 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  #before_action :configure_sign_in_params, only: [:create]
 
+  private
+  def after_sign_in_path_for(resource)
+    if current_user
+      flash[:notice] = "ログイン成功"
+      "/"
+    else
+      flash[:alert] = "ログイン失敗"
+      super
+    end
+  end
+  
   # GET /resource/sign_in
   # def new
   #   super
