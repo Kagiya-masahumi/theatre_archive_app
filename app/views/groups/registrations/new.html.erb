@@ -18,28 +18,24 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="field">
-            <%= f.label :name ,class: "label"%>
+            <%= f.label :name ,"団体名", class: "label"%>
             <p class="control has-icon-left">
               <%= f.text_field :name, autofocus: true, autocomplete: "name", :placeholder => "団体名", class: "input" %>
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
             </p>
           </div>
 
           <div class="field">
-            <%= f.label :email ,class: "label"%>
+            <%= f.label :email ,"メールアドレス",class: "label"%>
             <p class="control has-icon-left">
+            <span class="icon is-small is-left">
+              <i class="far fa-envelope"></i>
+            </span>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
-              <span class="icon is-small is-left">
-                <i class="far fa-envelope"></i>
-              </span>
             </p>
           </div>
 
-
           <div class="field">
-            <%= f.label :password ,class: "label"%>
+            <%= f.label :password ,"パスワード",class: "label"%>
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %>
@@ -52,17 +48,17 @@
           </div>
 
           <div class="field">
-            <%= f.label :password_confirmation ,class: "label"%>
+            <%= f.label :password_confirmation ,"パスワード再入力",class: "label"%>
             <p class="control has-icon-left">
               <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: "password confirmation" , class: "input"%>
               <span class="icon is-small">
-                <i class="far fa-lock"></i>
+                <i class="fas fa-lock"></i>
               </span>
             </p>            
           </div>
 
           <div class="field">
-            <%= f.label :chair_person ,class: "label"%>
+            <%= f.label :chair_person ,"代表者",class: "label"%>
             <p class="control has-icon-left">
               <%= f.text_field :chair_person, autofocus: true, autocomplete: "group_name", :placeholder => "代表者名", class: "input" %>
               <span class="icon is-small is-left">
@@ -71,11 +67,17 @@
             </p>
           </div>
 
+
           <div class="field">
-              <%= f.label :image,class: "label" %>
-              <p class="control has-icon-left">
-                <%= f.file_field :image %>
+            <%= f.label :profile , "劇団紹介" ,class: "label" %>
+            <%= f.text_area :profile , class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <p>
+              ロゴのアップロード
             </p>
+            <%= f.file_field :image, class: "input" %>
           </div>
 
           <div class="actions">

@@ -21,7 +21,7 @@ class Groups::RegistrationsController < Devise::RegistrationsController
 
   private
   def group_params
-    params.require(:group).permit(:name, :email, :password, :password_confirmation, :chair_person, :image)
+    params.require(:group).permit(:name, :email, :password, :password_confirmation, :chair_person,:profile ,:image)
   end
 
   

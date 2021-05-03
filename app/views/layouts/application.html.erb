@@ -45,10 +45,19 @@
         </div>
       </div>
       <% elsif group_signed_in? %>
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+          <div class="navbar-item">
+            <%= link_to "劇団一覧", groups_path, class: "navbar-item button is-warning is-light"%>
+          </div>
+          <div class="navbar-item">
+            <%=link_to "公演を投稿する", new_performance_path, class: "navbar-item button is-warning is-light"%>
+          </div>
+        </div>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
+              
                 <%= link_to "ログアウト", destroy_group_session_path ,method: :delete,class: "button is-warning is-light" %>
                 <%= link_to "マイページ", "/groups/#{current_group.id}", class: "button is-warning is-light" %>
               </p>

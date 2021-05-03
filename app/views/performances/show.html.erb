@@ -1,0 +1,93 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <div class="title">
+        公演詳細
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <table class="table is-narrow">
+                  <tr>
+                    <th>公演名</th>
+                  </tr>
+                  <tr>
+                    <td><%= simple_format @performance.title %></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= image_tag @performance.image %>
+            </figure>
+          </div>
+          
+
+            <div class="content">
+            <% if @performance.group.id == current_group.id %>
+              <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
+            <% end %>
+          </div>
+         </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+          <article class="panel is-link">
+            <p class="panel-heading">
+              By <%= @performance.group.name %>
+            </p>
+            <div class="panel-block">
+              <p class="control">
+                <%= @performance.explain %>
+              </p>
+            </div>
+            <div class="panel-block">
+              <p class="control">
+                <%= "キャスト：#{@performance.player}" %>
+              </p>
+            </div>
+            <div class="panel-block">
+              <p class="control">
+                <%= "スタッフ：#{@performance.staff}" %>
+              </p>
+            </div>
+            <div class="panel-block">
+              <p class="control">
+                <%= "公開日：#{@performance.start_date} 〜 #{@performance.finish_date}" %>
+ 
+              </p>
+            </div>
+
+
+            <%= link_to group_path(@performance.group), class: "panel-block" do %>
+              <span class="panel-icon">
+                <i class="fas fa-user" aria-hidden="true"></i>
+              </span>
+              <%= @performance.group.name %> さんのページへ
+            <% end %>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+

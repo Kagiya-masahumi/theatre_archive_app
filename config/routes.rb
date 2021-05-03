@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
 
-  resources :performances,only:[:index]
+  resources :performances
 
   root to: "performances#index"
   
