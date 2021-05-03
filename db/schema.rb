@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_115545) do
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
     t.string "chair_person", null: false
+    t.text "profile", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -50,10 +51,10 @@ ActiveRecord::Schema.define(version: 2021_04_30_115545) do
   create_table "performances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "explain", null: false
-    t.integer "start_day", null: false
-    t.integer "finish_day", null: false
+    t.integer "start_date", null: false
+    t.integer "finish_date", null: false
     t.string "place", null: false
-    t.text "staff_roll", null: false
+    t.text "staff", null: false
     t.text "player", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_115545) do
     t.string "name", null: false
     t.string "nickname", null: false
     t.string "family_name", null: false
+    t.text "profile", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
