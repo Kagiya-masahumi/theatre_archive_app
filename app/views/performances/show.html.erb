@@ -50,17 +50,20 @@
             </p>
             <div class="panel-block">
               <p class="control">
-                <%= @performance.explain %>
+                <%= simple_format(@performance.explain) %>
               </p>
             </div>
             <div class="panel-block">
               <p class="control">
-                <%= "キャスト：#{@performance.player}" %>
+                <%= "キャスト：" %>
+                <%= simple_format(@performance.player) %>
               </p>
+
             </div>
             <div class="panel-block">
               <p class="control">
-                <%= "スタッフ：#{@performance.staff}" %>
+                <%= "スタッフ：" %>
+                <%= simple_format(@performance.staff)%>
               </p>
             </div>
             <div class="panel-block">
