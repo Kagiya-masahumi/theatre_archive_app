@@ -7,6 +7,12 @@ class Group < ApplicationRecord
           return self.images[input].variant(resize: '300x300!').processed
         end
 
+        with_options presence: true do
+          validates :name
+          validates :chair_person
+          validates :image
+        end
+
         has_many :performances, dependent: :destroy
         has_one_attached :image
         
