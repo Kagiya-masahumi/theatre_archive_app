@@ -59,7 +59,7 @@
           </div>
 
           
-            <%= f.label :start_date , "公演開始日" ,class: "label" %>
+            <%= f.label :start_date , "公演開始(予定)日" ,class: "label" %>
             <div class='input is-grouped'>
               <%= raw sprintf(
                           f.date_select(
@@ -68,15 +68,15 @@
                             id:"birth-date",
                             use_month_numbers: true,
                             prompt:'--',
-                            start_year: 1960,
-                            end_year: (Time.now.year ),
+                            start_year: (Time.now.year + 3),
+                            end_year: 1960,
                             date_separator: '%s'),
                           "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
             </div>
         
 
           <div class="field">
-            <%= f.label :finish_date , "公演終了日" ,class: "label" %>
+            <%= f.label :finish_date , "公演終了(予定)日" ,class: "label" %>
             <div class='input is-grouped'>
               <%= raw sprintf(
                           f.date_select(
@@ -85,8 +85,8 @@
                             id:"birth-date",
                             use_month_numbers: true,
                             prompt:'--',
-                            start_year: 1960,
-                            end_year: (Time.now.year),
+                            start_year: (Time.now.year + 3),
+                            end_year: 1960,
                             date_separator: '%s'),
                           "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
             </div>
