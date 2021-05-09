@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
 
+  get 'tops/index'
+  get 'tops/new'
+  get 'tops/create'
   resources :performances
 
   root to: "performances#index"
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :users
+  resources :tops
 
   
 
