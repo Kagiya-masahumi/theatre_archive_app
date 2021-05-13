@@ -63,7 +63,10 @@ ActiveRecord::Schema.define(version: 2021_04_30_115545) do
     t.string "writer", null: false
     t.string "directer", null: false
     t.integer "play_hour", null: false
-    t.integer "rest_time", null: false
+    t.integer "play_minutes", null: false
+    t.integer "price", null: false
+    t.integer "audience", null: false
+    t.integer "rest", null: false
     t.text "other_notice"
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false

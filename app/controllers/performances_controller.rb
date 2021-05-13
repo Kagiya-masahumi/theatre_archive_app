@@ -66,8 +66,10 @@ class PerformancesController < ApplicationController
                                         :writer,
                                         :directer,
                                         :play_hour,
-                                        :play_minites,
-                                        :rest_time,
+                                        :play_minutes,
+                                        :price,
+                                        :audience,
+                                        :rest,
                                         :other_notice)
                                 .merge(group_id: current_group.id)
   end

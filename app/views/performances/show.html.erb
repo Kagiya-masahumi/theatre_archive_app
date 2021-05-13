@@ -29,7 +29,7 @@
             </div>
           <div class="card-image">
             <figure class="image is-4by3">
-              <%= image_tag @performance.image %>
+              <%= video_tag(@performance.video_top.to_s, :controls => true)  %> 
             </figure>
           </div>
           
@@ -47,6 +47,7 @@
       <div class="column is-4">
           <article class="panel is-link">
             <p class="panel-heading">
+              <%= image_tag @performance.image %>
               By <%= @performance.group.name %>
             </p>
             <div class="panel-block">

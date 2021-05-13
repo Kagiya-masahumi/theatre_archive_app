@@ -100,16 +100,6 @@
           </div>
 
           <div class="field">
-            <%= f.label :designer_name , "フライヤーデザイン" ,class: "label" %>
-            <%= f.text_field :designer_name , class: "input" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :designer_URL , "デザイナーのHP" ,class: "label" %>
-            <%= f.text_field :designer_URL , class: "textarea" %>
-          </div>
-
-          <div class="field">
             <%= f.label :time_table , "タイムテーブル" ,class: "label" %>
             <%= f.text_area :time_table , class: "textarea" %>
           </div>
@@ -125,15 +115,30 @@
           </div>
 
           <div class="field">
-            <%= f.label :play_hour,"上演予定時間", class: 'control-label'%>
-            <%= f.time_select :play_hour, class: 'form-control'%>
+            <%= f.label :play_hour,"上演予定時間:約", class: 'control-label'%>
+            <%= f.text_field :play_hour, class: 'form-control'%>
+            <%= f.label :play_minutes, "時間",class: 'control-label'%>
+            <%= f.text_field :play_minutes, class: 'form-control'%>分
           </div>
 
           <div class="field">
             <p>休憩時間</p>
-            <label><%= f.radio_button :rest_time, "あり" %> あり </label>
-            <label><%= f.radio_button :rest_time, "なし" %> なし</label>
+            <label><%= f.radio_button :rest, "あり" %> あり </label>
+            <label><%= f.radio_button :rest, "なし" %> なし</label>
           </div>
+
+          <div class="field">
+            <p>観客</p>
+            <label><%= f.radio_button :audience, "観客あり" %> 観客の入場あり </label>
+            <label><%= f.radio_button :audience, "観客なし" %> 観客の入場なし</label>
+          </div>
+
+          <div class="field">
+            <%= f.label :price , "金額" ,class: "label" ,placeholder:"例)2000"%>
+            <%= f.text_field :price , class: "input" %>
+          </div>
+
+
 
           <div class="field">
             <%= f.label :other_notice, "その他（注意事項など）" ,class: "label" %>
@@ -141,7 +146,7 @@
           </div>
 
           <div class="field">
-            <%= f.label :video %>
+            <%= f.label :video ,"動画のアップロード" %>
             <%= f.file_field :video_top, :accept => 'video/*' %>
           </div>
 
