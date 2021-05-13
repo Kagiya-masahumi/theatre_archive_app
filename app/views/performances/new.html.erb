@@ -33,6 +33,13 @@
     <div class="columns is-centered">
       <div class="column is-6">
         <%= form_for @performance do |f| %>
+
+
+          <div class="field">
+            <%= f.label :image, "フライヤー" %>
+            <%= f.file_field :image, class: "input" %>
+          </div>
+
           <div class="field">
             <%= f.label :title, "公演名", class: "label" %>
             <%= f.text_field :title , class: "input" %>
@@ -68,8 +75,8 @@
                             id:"birth-date",
                             use_month_numbers: true,
                             prompt:'--',
-                            start_year: (Time.now.year + 3),
-                            end_year: 1960,
+                            start_year: (Time.now.year + 1),
+                            end_year: 1999,
                             date_separator: '%s'),
                           "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
             </div>
@@ -85,18 +92,59 @@
                             id:"birth-date",
                             use_month_numbers: true,
                             prompt:'--',
-                            start_year: (Time.now.year + 3),
-                            end_year: 1960,
+                            start_year: (Time.now.year + 1),
+                            end_year: 1999,
                             date_separator: '%s'),
                           "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
             </div>
           </div>
 
+          <div class="field">
+            <%= f.label :designer_name , "フライヤーデザイン" ,class: "label" %>
+            <%= f.text_field :designer_name , class: "input" %>
+          </div>
 
           <div class="field">
-            <%= f.label :image, "写真", class: "label" %>
-            <%= f.file_field :image, class: "input" %>
+            <%= f.label :designer_URL , "デザイナーのHP" ,class: "label" %>
+            <%= f.text_field :designer_URL , class: "textarea" %>
           </div>
+
+          <div class="field">
+            <%= f.label :time_table , "タイムテーブル" ,class: "label" %>
+            <%= f.text_area :time_table , class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :writer , "脚本" ,class: "label" %>
+            <%= f.text_field :writer , class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :directer , "演出" ,class: "label" %>
+            <%= f.text_field :directer , class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :play_hour,"上演予定時間", class: 'control-label'%>
+            <%= f.time_select :play_hour, class: 'form-control'%>
+          </div>
+
+          <div class="field">
+            <p>休憩時間</p>
+            <label><%= f.radio_button :rest_time, "あり" %> あり </label>
+            <label><%= f.radio_button :rest_time, "なし" %> なし</label>
+          </div>
+
+          <div class="field">
+            <%= f.label :other_notice, "その他（注意事項など）" ,class: "label" %>
+            <%= f.text_area :other_notice , class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :video %>
+            <%= f.file_field :video_top, :accept => 'video/*' %>
+          </div>
+
 
             <%= f.submit '投稿', class: "button is-success" %>
         <% end %>

@@ -61,4 +61,5 @@ gem "bulma-rails", "~> 0.9.1"
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'dotenv-rails'
+gem 'active_hash'
 
