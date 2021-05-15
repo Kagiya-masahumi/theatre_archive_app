@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
   resources :performances
+  resources :perform_steps, only: [:index, :show, :update]
 
   root to: "performances#index"
   
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :users
-  resources :tops
+  #resources :comments
 
   
 

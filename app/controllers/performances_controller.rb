@@ -25,7 +25,8 @@ class PerformancesController < ApplicationController
 
     @performance = Performance.new(performance_params)
     if @performance.save
-      redirect_to performances_path(@performance), notice: "投稿に成功しました。"
+      session[:performance_id] = @performance.id
+      redirect_to perform_steps_path
     else
       render :new
       

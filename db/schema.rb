@@ -44,8 +44,10 @@ ActiveRecord::Schema.define(version: 2021_05_15_084059) do
     t.string "place", null: false
     t.integer "play_hour", null: false
     t.integer "play_minutes", null: false
+    t.bigint "performance_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["performance_id"], name: "index_companies_on_performance_id"
   end
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

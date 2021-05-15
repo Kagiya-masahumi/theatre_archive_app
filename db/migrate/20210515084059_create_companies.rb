@@ -11,6 +11,7 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.string :place, null:false
       t.integer :play_hour, null: false
       t.integer :play_minutes, null: false
+      t.references :performance
 
       t.timestamps
     end
