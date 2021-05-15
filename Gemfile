@@ -62,4 +62,6 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'dotenv-rails'
 gem 'active_hash'
+gem 'fog-aws'
+gem 'dotenv-rails'
 

@@ -8,9 +8,7 @@ class CreatePerformances < ActiveRecord::Migration[6.0]
       t.string :place, null:false
       t.text :staff, null:false
       t.text :player, null:false
-      t.string :video_top, null: false
-      t.string :designer_name
-      t.string :designer_URL
+      t.string :video, null: false
       t.text :time_table, null: false
       t.string :writer, null:false
       t.string :directer, null: false

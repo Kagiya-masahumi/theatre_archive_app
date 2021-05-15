@@ -22,7 +22,7 @@ class PerformancesController < ApplicationController
   end
 
   def create
-    binding.pry
+
     @performance = Performance.new(performance_params)
     if @performance.save
       redirect_to performances_path(@performance), notice: "投稿に成功しました。"
@@ -59,9 +59,7 @@ class PerformancesController < ApplicationController
                                         :start_date, 
                                         :finish_date, 
                                         :image,
-                                        :video_top,
-                                        :designer_name,
-                                        :designer_URL,
+                                        :video,
                                         :time_table,
                                         :writer,
                                         :directer,

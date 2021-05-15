@@ -24,14 +24,14 @@
                   <tr>
                     <td><%= simple_format @performance.title %></td>
                   </tr>
+                  <tr>
+                    <td>
+                      <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
+                    </td>
+                  </tr>
                 </table>
               </div>
             </div>
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <%= video_tag(@performance.video_top.to_s, :controls => true)  %> 
-            </figure>
-          </div>
           
 
             <div class="content">
