@@ -23,7 +23,7 @@
 
 | Column                | Type   | Options                      |
 | --------              | ------ | -----------                  |
-| name            | string | null: false                  |
+| name                  | string | null: false                  |
 | email                 | string | null: false,unique: true     |
 | encrypted_password    | string | null: false                  |
 | chair_person          | string | null: false                  |
@@ -46,8 +46,8 @@
 | staff_name        | text        | null: false                        |
 | acting            | text        | null: false                        |
 | place             | string      | null: false                        |
-| start_date         | date        | null: false                        |
-| finish_date        | date        | null: false                        |
+| start_date        | date        | null: false                        |
+| finish_date       | date        | null: false                        |
 | groups            | references  | null: false, foreign_key: true     |
 
 

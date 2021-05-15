@@ -3,7 +3,6 @@ class PerformancesController < ApplicationController
 
   def index
     @performances = Performance.all
-    
   end
 
   def show
@@ -23,6 +22,7 @@ class PerformancesController < ApplicationController
   end
 
   def create
+
     @performance = Performance.new(performance_params)
     if @performance.save
       redirect_to performances_path(@performance), notice: "投稿に成功しました。"
@@ -51,7 +51,24 @@ class PerformancesController < ApplicationController
 
   private
   def performance_params
-    params.require(:performance).permit(:title, :explain, :player,:staff, :place, :start_date, :finish_date, :image)
+    params.require(:performance).permit(:title,
+                                        :explain, 
+                                        :player,
+                                        :staff, 
+                                        :place, 
+                                        :start_date, 
+                                        :finish_date, 
+                                        :image,
+                                        :video,
+                                        :time_table,
+                                        :writer,
+                                        :directer,
+                                        :play_hour,
+                                        :play_minutes,
+                                        :price,
+                                        :audience,
+                                        :rest,
+                                        :other_notice)
                                 .merge(group_id: current_group.id)
   end
 

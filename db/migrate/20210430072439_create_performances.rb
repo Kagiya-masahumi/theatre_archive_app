@@ -8,6 +8,16 @@ class CreatePerformances < ActiveRecord::Migration[6.0]
       t.string :place, null:false
       t.text :staff, null:false
       t.text :player, null:false
+      t.string :video, null: false
+      t.text :time_table, null: false
+      t.string :writer, null:false
+      t.string :directer, null: false
+      t.integer :play_hour, null: false
+      t.integer :play_minutes, null: false
+      t.integer :price, null: false
+      t.integer :audience, null: false
+      t.integer :rest, null: false
+      t.text :other_notice
       t.references :group ,null: false, foreign_key: true
 
 
