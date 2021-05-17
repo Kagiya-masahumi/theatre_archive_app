@@ -1,0 +1,61 @@
+<%= form_with model: @performance, url: company_perform_steps_path,method: :post  do |f| %>
+
+  <div class="field">
+    <%= f.label :place , "劇場名" ,class: "label" %>
+    <%= f.text_field :place ,class: "input" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :play_hour,"上演予定時間:約", class: 'control-label'%>
+    <%= f.text_field :play_hour, class: 'form-control'%>
+    <%= f.label :play_minutes, "時間",class: 'control-label'%>
+    <%= f.text_field :play_minutes, class: 'form-control'%>分
+  </div>
+
+  <div class="field">
+    <p>休憩時間</p>
+    <label><%= f.radio_button :rest, "あり" %> あり </label>
+    <label><%= f.radio_button :rest, "なし" %> なし</label>
+  </div>
+
+  <div class="field">
+    <p>観客</p>
+    <label><%= f.radio_button :audience, "観客あり" %> 観客の入場あり </label>
+    <label><%= f.radio_button :audience, "観客なし" %> 観客の入場なし</label>
+  </div>
+
+  <div class="field">
+    <%= f.label :player , "出演者" ,class: "label" %>
+    <%= f.text_area :player, class: "textarea" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :staff , "スタッフ" ,class: "label" %>
+    <%= f.text_area :staff , class: "textarea" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :writer , "脚本" ,class: "label" %>
+    <%= f.text_field :writer , class: "input" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :directer , "演出" ,class: "label" %>
+    <%= f.text_field :directer , class: "input" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :other_notice, "その他（注意事項など）" ,class: "label" %>
+    <%= f.text_area :other_notice , class: "textarea" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit '投稿', class: "button is-success" %>
+  </div>
+
+
+  
+<% end %>

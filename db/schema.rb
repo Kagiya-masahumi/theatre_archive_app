@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_05_15_084059) do
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "place", null: false
     t.text "staff", null: false
     t.text "player", null: false
     t.string "writer", null: false
@@ -41,7 +42,6 @@ ActiveRecord::Schema.define(version: 2021_05_15_084059) do
     t.integer "audience", null: false
     t.integer "rest", null: false
     t.text "other_notice"
-    t.string "place", null: false
     t.integer "play_hour", null: false
     t.integer "play_minutes", null: false
     t.bigint "performance_id"
@@ -70,19 +70,9 @@ ActiveRecord::Schema.define(version: 2021_05_15_084059) do
     t.text "explain", null: false
     t.date "start_date", null: false
     t.date "finish_date", null: false
-    t.string "place", null: false
-    t.text "staff", null: false
-    t.text "player", null: false
     t.string "video", null: false
     t.text "time_table", null: false
-    t.string "writer", null: false
-    t.string "directer", null: false
-    t.integer "play_hour", null: false
-    t.integer "play_minutes", null: false
     t.integer "price", null: false
-    t.integer "audience", null: false
-    t.integer "rest", null: false
-    t.text "other_notice"
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -9,6 +9,7 @@ class CreatePerformances < ActiveRecord::Migration[6.0]
       t.text :time_table, null: false
       t.integer :price, null: false
       
+      
       t.references :group ,null: false, foreign_key: true
 
 

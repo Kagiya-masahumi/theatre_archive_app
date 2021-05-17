@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
 
   resources :performances
-  resources :perform_steps, only: [:index, :show, :update]
 
   root to: "performances#index"
   
@@ -20,6 +19,18 @@ Rails.application.routes.draw do
   resources :groups
   resources :users
   #resources :comments
+
+  resources :perform_steps ,only: [:index,:create] do
+    collection do
+
+      get 'registration'
+      post 'registration' => 'perform_steps#first_validation'
+      get 'company'
+      post 'company' => 'perform_steps#second_validation'
+      get 'done'          
+    end
+  end
+
 
   
 

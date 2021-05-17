@@ -5,13 +5,12 @@ class Performance < ApplicationRecord
   
   with_options presence: true do
     validates :title
-    validates :staff
-    validates :image
     validates :price
-    validates :rest
     validates :explain
-    validates :writer
-    validates :audience
+    validates :start_date
+    validates :finish_date
+    validates :time_table
+
   end
 
   mount_uploader :video, VideoUploader
