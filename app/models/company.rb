@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  \
+  
   with_options presence: true do
     validates :staff
     validates :rest
@@ -11,6 +11,7 @@ class Company < ApplicationRecord
     validates :play_hour
     validates :play_minutes
     validates :other_notice
+    
   end
 
   belongs_to :performance, optional:true

@@ -94,59 +94,7 @@
           </div>
         
 
-          <%= fields_for @profile,url: registration_perform_steps_path ,method: :post do |o| %>
-            <div class="field">
-              <%= o.label :place , "劇場名" ,class: "label" %>
-              <%= o.text_field :place ,class: "input" %>
-            </div>
-
-            <div class="field">
-              <%= o.label :play_hour,"上演予定時間:約", class: 'control-label'%>
-              <%= o.text_field :play_hour, class: 'form-control'%>
-              <%= o.label :play_minutes, "時間",class: 'control-label'%>
-              <%= o.text_field :play_minutes, class: 'form-control'%>分
-            </div>
-
-            <div class="field">
-              <p>休憩時間</p>
-              <label><%= o.radio_button :rest, "あり" %> あり </label>
-              <label><%= o.radio_button :rest, "なし" %> なし</label>
-            </div>
-
-            <div class="field">
-              <p>観客</p>
-              <label><%= o.radio_button :audience, "観客あり" %> 観客の入場あり </label>
-              <label><%= o.radio_button :audience, "観客なし" %> 観客の入場なし</label>
-            </div>
-
-            <div class="field">
-              <%= o.label :player , "出演者" ,class: "label" %>
-              <%= o.text_area :player, class: "textarea" %>
-            </div>
-
-            <div class="field">
-              <%= o.label :staff , "スタッフ" ,class: "label" %>
-              <%= o.text_area :staff , class: "textarea" %>
-            </div>
-
-
-            <div class="field">
-              <%= o.label :writer , "脚本" ,class: "label" %>
-              <%= o.text_field :writer , class: "input" %>
-            </div>
-
-            <div class="field">
-              <%= o.label :directer , "演出" ,class: "label" %>
-              <%= o.text_field :directer , class: "input" %>
-            </div>
-
-
-            <div class="field">
-              <%= o.label :other_notice, "その他（注意事項など）" ,class: "label" %>
-              <%= o.text_area :other_notice , class: "textarea" %>
-            </div>
-          <% end %>
-
+          
           <div class="actions">
             <%= f.submit '次へ進む', class: "button is-success" %>
           </div>

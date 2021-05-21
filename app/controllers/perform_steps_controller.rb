@@ -51,6 +51,7 @@ class PerformStepsController < ApplicationController
 
     )
     # バリデーションエラーを事前に取得させる（下のunlessでは全て取得できない場合があるため）
+
     check_performance_valid = @performance.valid?
     check_company_valid = @company.valid?
     #ユーザー、プロフィールのバリデーション判定
@@ -62,22 +63,16 @@ class PerformStepsController < ApplicationController
       redirect_to company_perform_steps_path
     end
   end
-
-  def company_registration
+  
+  
+  def company
     @company = Company.new
   end
 
   def second_validation
-    #入力値を全てsessionに保存
     binding.pry
-    session[:title] = performance_params[:title]
-    session[:explain] = performance_params[:explain]
-    session[:start_date] = performance_params[:start_date]
-    session[:finish_date] = performance_params[:finish_date]
-    session[:time_table] = performance_params[:time_table]
-    session[:price] = performance_params[:price]
-    session[:image] = performance_params[:image]
-    session[:video] = performance_params[:video]
+    #入力値を全てsessionに保存
+    
     session[:player] = company_params[:player]
     session[:staff] = company_params[:staff]
     session[:writer] = company_params[:writer]
@@ -91,20 +86,8 @@ class PerformStepsController < ApplicationController
     session[:group_id] = current_group.id
   
     #バリデーション判定用にuserをnewします
-    @performance = Performance.new(
-      title: session[:title],
-      explain: session[:explain],
-      start_date: session[:start_date],
-      finish_date: session[:finish_date],
-      time_table: session[:time_table],
-      price: session[:price],
-      image: session[:image],
-      video: session[:video],
-      
-      group_id: session[:group_id]
-
-      
-    )
+    binding.pry
+  
     #プロフィールも同様にnewします。未入力の項目はバリデーションに引っかからない値を仮置きします
     @company = Company.new(
       performance: @performance,
@@ -122,19 +105,17 @@ class PerformStepsController < ApplicationController
 
     )
     # バリデーションエラーを事前に取得させる（下のunlessでは全て取得できない場合があるため）
-    check_performance_valid = @performance.valid?
+    binding.pry
     check_company_valid = @company.valid?
     #ユーザー、プロフィールのバリデーション判定
-    unless  check_performance_valid && check_company_valid
+    unless   check_company_valid
       render 'perform_steps/registration' 
     else
       # 問題がなければsession[:through_first_valid]を宣言して次のページへリダイレクト
-      session[:through_first_valid] = "through_first_valid"
-      redirect_to company_perform_steps_path
+      session[:through_second_valid] = "through_second_valid"
     end
-  end
-
-  def create
+  
+    binding.pry
     @performance = Performance.new( title: session[:title],
                                     explain: session[:explain],
                                     start_date: session[:start_date],
@@ -143,37 +124,38 @@ class PerformStepsController < ApplicationController
                                     price: session[:price],
                                     image: session[:image],
                                     video: session[:video],
-                                  ).merge(group_id: current_group.id)
+                                    group_id: session[:group_id]
+                                  )
     # 万一ユーザーがcreateできなかった場合、全sessionをリセットして登録ページトップへリダイレクト
+
     unless @performance.save
+      binding.pry
       reset_session
       redirect_to registration_perform_steps_path
       return
     end
 
-    @company = Company.create(
-      performance: @performance,
-      player: session[:player],
-      staff: session[:staff],
-      writer: session[:writer],
-      directer: session[:directer],
-      place: session[:place],
-      play_hour: session[:play_hour],
-      play_minutes: session[:play_minutes],
-      audience: session[:audience],
-      rest: session[:rest],
-      other_notice: session[:other_notice],
+    @company = Company.create(performance: @performance,
+                              player: session[:player],
+                              staff: session[:staff],
+                              writer: session[:writer],
+                              directer: session[:directer],
+                              place: session[:place],
+                              play_hour: session[:play_hour],
+                              play_minutes: session[:play_minutes],
+                              audience: session[:audience],
+                              rest: session[:rest],
+                              other_notice: session[:other_notice],
     )
-    if @creditcard.save
-      reset_session
-      session[:id] = @user.id
-      redirect_to done_perform_steps_path
-      return 
+    binding.pry
+    if @performance.save && @company.save
+      redirect_to root_path
     else
-      #失敗したらsessionを切って登録ページトップへリダイレクト
       reset_session
       redirect_to registration_perform_steps_path
+      return
     end
+
   end
 
   def  done_perform_steps
@@ -202,7 +184,7 @@ class PerformStepsController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:player,
+    params.permit(:player,
                                     :staff, 
                                     :place,
                                     :writer,

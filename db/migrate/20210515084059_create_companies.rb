@@ -11,8 +11,7 @@ class CreateCompanies < ActiveRecord::Migration[6.0]
       t.text :other_notice
       t.integer :play_hour, null: false
       t.integer :play_minutes, null: false
-      t.references :performance
-
+      t.references :performance, foreign_key: true
       t.timestamps
     end
   end
