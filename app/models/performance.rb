@@ -10,6 +10,16 @@ class Performance < ApplicationRecord
     validates :start_date
     validates :finish_date
     validates :time_table
+    validates :staff
+    validates :rest
+    validates :writer
+    validates :audience
+    validates :place
+    validates :audience
+    validates :rest
+    validates :play_hour
+    validates :play_minutes
+    validates :other_notice
 
   end
 

@@ -3,170 +3,49 @@ class PerformStepsController < ApplicationController
   def index
   end
 
-  def registration
+  def step1
     @performance = Performance.new
-    @company = Company.new
   end
 
-  # 図❶の処理
-  def first_validation
-    #入力値を全てsessionに保存
-    session[:title] = performance_params[:title]
-    session[:explain] = performance_params[:explain]
-    session[:start_date] = performance_params[:start_date]
-    session[:finish_date] = performance_params[:finish_date]
-    session[:time_table] = performance_params[:time_table]
-    session[:price] = performance_params[:price]
-    session[:image] = performance_params[:image]
-    session[:video] = performance_params[:video]
-    session[:group_id] = current_group.id
-  
-    #バリデーション判定用にuserをnewします
-    @performance = Performance.new(
-      title: session[:title],
-      explain: session[:explain],
-      start_date: session[:start_date],
-      finish_date: session[:finish_date],
-      time_table: session[:time_table],
-      price: session[:price],
-      image: session[:image],
-      video: session[:video],
-      group_id: session[:group_id]
 
-      
-    )
-    #プロフィールも同様にnewします。未入力の項目はバリデーションに引っかからない値を仮置きします
-    @company = Company.new(
-      performance: @performance,
-      player: "田中",
-      staff: "山田",
-      writer: "佐藤",
-      directer: "加藤",
-      place: "オンライン",
-      play_hour: '1',
-      play_minutes: '30',
-      audience: '1',
-      rest: '1',
-      other_notice: "特になし",
+  def step1_validates
+    @performance = set_perform_info(performance_params)
+    @performance.valid?
 
-    )
-    # バリデーションエラーを事前に取得させる（下のunlessでは全て取得できない場合があるため）
-
-    check_performance_valid = @performance.valid?
-    check_company_valid = @company.valid?
-    #ユーザー、プロフィールのバリデーション判定
-    unless  check_performance_valid && check_company_valid
-      render 'perform_steps/registration' 
-    else
-      # 問題がなければsession[:through_first_valid]を宣言して次のページへリダイレクト
-      session[:through_first_valid] = "through_first_valid"
-      redirect_to company_perform_steps_path
-    end
-  end
-  
-  
-  def company
-    @company = Company.new
+    skip_company_validate(@performance.errors)
+      if @performance.errors.messages.blank? && @performance.errors.details.blank?
+          create_session(performance_params)
+          redirect_to step2_perform_steps_path
+      else 
+        render :step1
+      end
   end
 
-  def second_validation
-    binding.pry
-    #入力値を全てsessionに保存
-    
-    session[:player] = company_params[:player]
-    session[:staff] = company_params[:staff]
-    session[:writer] = company_params[:writer]
-    session[:directer] = company_params[:directer]
-    session[:place] = company_params[:place]
-    session[:play_hour] = company_params[:play_hour]
-    session[:play_minutes] = company_params[:play_minutes]
-    session[:audience] = company_params[:audience]
-    session[:rest] = company_params[:rest]
-    session[:other_notice] = company_params[:other_notice]
-    session[:group_id] = current_group.id
-  
-    #バリデーション判定用にuserをnewします
-    binding.pry
-  
-    #プロフィールも同様にnewします。未入力の項目はバリデーションに引っかからない値を仮置きします
-    @company = Company.new(
-      performance: @performance,
-      player: session[:player],
-      staff: session[:staff],
-      writer: session[:writer],
-      directer: session[:directer],
-      place: session[:place],
-      play_hour: session[:play_hour],
-      play_minutes: session[:play_minutes],
-      audience: session[:audience],
-      rest: session[:rest],
-      other_notice: session[:other_notice],
+  def step2
+  @performance = Performance.new
+  end
 
+  def create
+    set_perform_with_session
+    @performance[:player] = performance_params[:player]
+    @performance[:staff] = performance_params[:staff]
+    @performance[:writer] = performance_params[:writer]
+    @performance[:directer] = performance_params[:directer]
+    @performance[:audience] = performance_params[:audience]
+    @performance[:rest] = performance_params[:rest]
+    @performance[:place] = performance_params[:place]
+    @performance[:play_hour] = performance_params[:play_hour]
+    @performance[:play_minutes] = performance_params[:play_minutes]
+    @performance[:other_notice] = performance_params[:other_notice]
+    @performance[:group_id] = performance_params[:group_id]
 
-    )
-    # バリデーションエラーを事前に取得させる（下のunlessでは全て取得できない場合があるため）
-    binding.pry
-    check_company_valid = @company.valid?
-    #ユーザー、プロフィールのバリデーション判定
-    unless   check_company_valid
-      render 'perform_steps/registration' 
-    else
-      # 問題がなければsession[:through_first_valid]を宣言して次のページへリダイレクト
-      session[:through_second_valid] = "through_second_valid"
-    end
-  
-    binding.pry
-    @performance = Performance.new( title: session[:title],
-                                    explain: session[:explain],
-                                    start_date: session[:start_date],
-                                    finish_date: session[:finish_date],
-                                    time_table: session[:time_table],
-                                    price: session[:price],
-                                    image: session[:image],
-                                    video: session[:video],
-                                    group_id: session[:group_id]
-                                  )
-    # 万一ユーザーがcreateできなかった場合、全sessionをリセットして登録ページトップへリダイレクト
-
-    unless @performance.save
-      binding.pry
-      reset_session
-      redirect_to registration_perform_steps_path
-      return
-    end
-
-    @company = Company.create(performance: @performance,
-                              player: session[:player],
-                              staff: session[:staff],
-                              writer: session[:writer],
-                              directer: session[:directer],
-                              place: session[:place],
-                              play_hour: session[:play_hour],
-                              play_minutes: session[:play_minutes],
-                              audience: session[:audience],
-                              rest: session[:rest],
-                              other_notice: session[:other_notice],
-    )
-    binding.pry
-    if @performance.save && @company.save
+    if @performance.save
+      delete_session
       redirect_to root_path
     else
-      reset_session
-      redirect_to registration_perform_steps_path
-      return
-    end
-
+      render :step2
+    end  
   end
-
-  def  done_perform_steps
-    # session[id]がなければ登録ページトップへリダイレクト
-    unless session[:id]
-      redirect_to registration_perform_steps_path 
-      return
-    end
-    redirect_to performances_path
-  end
-
 
   private
 
@@ -179,26 +58,135 @@ class PerformStepsController < ApplicationController
                                         :video,
                                         :time_table,
                                         :price,
-                                        )
-                                .merge(group_id: current_group.id)
+                                        :player,
+                                        :staff, 
+                                        :place,
+                                        :writer,
+                                        :directer,
+                                        :play_hour,
+                                        :play_minutes,
+                                        :audience,
+                                        :rest,
+                                        :other_notice
+                                      ).merge(group_id: current_group.id)
   end
 
-  def company_params
-    params.permit(:player,
-                                    :staff, 
-                                    :place,
-                                    :writer,
-                                    :directer,
-                                    :play_hour,
-                                    :play_minutes,
-                                    :audience,
-                                    :rest,
-                                    :other_notice
-                                  ).merge(group_id: current_group.id)
+
+  def set_perform_info(performance_params)
+    Performance.new(
+      title: performance_params[:title],
+      explain: performance_params[:explain],
+      start_date: performance_params[:start_date],
+      finish_date: performance_params[:finish_date],
+      image: performance_params[:image],
+      video: performance_params[:video],
+      time_table: performance_params[:time_table],
+      price: performance_params[:price],
+      player: performance_params[:player],
+      staff: performance_params[:staff],
+      writer: performance_params[:writer],
+      directer: performance_params[:directer],
+      play_hour: performance_params[:play_hour],
+      play_minutes: performance_params[:play_minutes],
+      audience: performance_params[:audience],
+      rest: performance_params[:rest],
+      other_notice: performance_params[:other_notice],
+      group_id: performance_params[:group_id]
+    )
   end
 
-    # 前のpostアクションで定義されたsessionがなかった場合登録ページトップへリダイレクト
-  def redirect_to_index_from_sms
-    redirect_to registration_perform_step_index_path unless session[:through_first_valid].present? && session[:through_first_valid] == "through_first_valid"
+  def set_perform_with_session
+    @performance = Performance.new(
+      title: session[:title],
+      explain: session[:explain],
+      start_date: session[:start_date],
+      finish_date: session[:finish_date],
+      time_table: session[:time_table],
+      price: session[:price],
+      image: session[:image],
+      video: session[:video],
+      player: session[:player],
+      staff: session[:staff],
+      writer: session[:writer],
+      directer: session[:directer],
+      place: session[:place],
+      play_hour: session[:play_hour],
+      play_minutes: session[:play_minutes],
+      audience: session[:audience],
+      rest: session[:rest],
+      other_notice: session[:other_notice],
+      group_id: session[:group_id]
+    )
   end
+
+  def skip_company_validate(errors)
+    errors.messages.delete(:player)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:player)
+    errors.messages.delete(:staff)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:staff)
+    errors.messages.delete(:writer)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:writer)
+    errors.messages.delete(:directer)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:directer)
+    errors.messages.delete(:play_hour)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:play_hour)
+    errors.messages.delete(:play_minutes)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:play_minutes)
+    errors.messages.delete(:place)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:place)
+    errors.messages.delete(:audience)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:audience)
+    errors.messages.delete(:rest)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:rest)
+    errors.messages.delete(:other_notice)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:other_notice)
+  end
+
+  def create_session(performance_params)
+    session[:title] = performance_params[:title]
+    session[:explain] = performance_params[:explain]
+    session[:start_date] = performance_params[:start_date]
+    session[:finish_date] = performance_params[:finish_date]
+    session[:time_table] = performance_params[:time_table]
+    session[:price] = performance_params[:price]
+    session[:image] = performance_params[:image]
+    session[:video] = performance_params[:video]
+    session[:player] = performance_params[:player]
+    session[:staff] = performance_params[:staff]
+    session[:writer] = performance_params[:writer]
+    session[:directer] = performance_params[:directer]
+    session[:place] = performance_params[:place]
+    session[:play_hour] = performance_params[:play_hour]
+    session[:play_minutes] = performance_params[:play_minutes]
+    session[:audience] = performance_params[:audience]
+    session[:rest] = performance_params[:rest]
+    session[:other_notice] = performance_params[:other_notice]
+    session[:group_id] = current_group.id
+  end
+
+  def delete_session
+    session.delete(:title)
+    session.delete(:explain)
+    session.delete(:start_date)
+    session.delete(:finish_date)
+    session.delete(:time_table)
+    session.delete(:price)
+    session.delete(:player)
+    session.delete(:staff)
+    session.delete(:writer)
+    session.delete(:directer)
+    session.delete(:place)
+    session.delete(:play_hour)
+    session.delete(:play_minutes)
+    session.delete(:audience)
+    session.delete(:rest)
+    session.delete(:other_notice)
+  end
+
+
+
+
+
+    #----------------------------------------------------------------------
+
 end
