@@ -2,7 +2,7 @@ class Performance < ApplicationRecord
   def thumbnail input
     return self.images[input].variant(resize: '300x300!').processed
   end
-  
+  mount_uploader :video, VideoUploader
   with_options presence: true do
     validates :title
     validates :price
@@ -20,10 +20,10 @@ class Performance < ApplicationRecord
     validates :play_hour
     validates :play_minutes
     validates :other_notice
-
+    validates :video
   end
 
-  mount_uploader :video, VideoUploader
+  
 
   has_many :comments
   has_one :company

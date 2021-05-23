@@ -5,7 +5,7 @@ class CreatePerformances < ActiveRecord::Migration[6.0]
       t.text :explain, null:false
       t.date :start_date, null:false
       t.date :finish_date, null:false
-      t.string :video, null: false
+      t.string :video
       t.text :time_table, null: false
       t.integer :price, null: false
       t.string :place, null:false

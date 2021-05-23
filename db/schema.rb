@@ -70,9 +70,19 @@ ActiveRecord::Schema.define(version: 2021_05_15_084059) do
     t.text "explain", null: false
     t.date "start_date", null: false
     t.date "finish_date", null: false
-    t.string "video", null: false
+    t.string "video"
     t.text "time_table", null: false
     t.integer "price", null: false
+    t.string "place", null: false
+    t.text "staff", null: false
+    t.text "player", null: false
+    t.string "writer", null: false
+    t.string "directer", null: false
+    t.integer "audience", null: false
+    t.integer "rest", null: false
+    t.text "other_notice"
+    t.integer "play_hour", null: false
+    t.integer "play_minutes", null: false
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

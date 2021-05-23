@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        新規作成
+        作品の投稿
       </h1>
     </div>
   </div>
@@ -25,9 +25,8 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-6">
-        <%= form_for(@performance, url: step2_perform_steps_path , method: :post) do |f| %>
-
-
+        <%= form_for @performance, url: step1_perform_steps_path, method: :post do |f| %>
+          
           <div class="field">
             <%= f.label :image, "フライヤー" %>
             <%= f.file_field :image, class: "input" %>
@@ -35,51 +34,52 @@
 
           <div class="field">
             <%= f.label :title, "公演タイトル", class: "label" %>
-            <%= f.text_field :title , class: "input", placeholder: '例）かもめ' %>
+            <%= f.text_field :title , class: "input", id: 'title', autofocus: true, placeholder: '例）かもめ' %>
           </div>
 
           <div class="field">
             <%= f.label :explain , "公演内容" ,class: "label" %>
-            <%= f.text_area :explain , class: "textarea" %>
+            <%= f.text_area :explain , class: "textarea",id: 'explain',autofocus: true, placeholder: '例）かもめ'%>
           </div>
 
-          
-            <%= f.label :start_date , "公演開始(予定)日" ,class: "label" %>
-            <div class='input is-grouped'>
-              <%= raw sprintf(
-                          f.date_field(
-                            :start_date,
-                            class:'select-date',
-                            id:"birth-date",
-                            use_month_numbers: true,
-                            prompt:'--',
-                            start_year: (Time.now.year + 1),
-                            end_year: 1999,
-                            date_separator: '%s'),
-                          "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
-            </div>
-        
+          <div class="field">
+            <%= f.label :start_date , "公演開始(予定)日"  %>
+              <div class='input is-grouped'>
+                <%= raw sprintf(
+                            f.date_field(
+                              :start_date,
+                              class:'select-date',
+                              id:"birth-date",
+                              use_month_numbers: true,
+                              prompt:'--',
+                              start_year: (Time.now.year + 1),
+                              end_year: 1999,
+                              date_separator: '%s'),
+                            "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+              </div>
+          </div>
+      
 
-            <div class="field">
-            <%= f.label :finish_date , "公演終了(予定)日" ,class: "label" %>
-            <div class='input is-grouped'>
-              <%= raw sprintf(
-                          f.date_field(
-                            :finish_date,
-                            class:'select-date',
-                            id:"birth-date",
-                            use_month_numbers: true,
-                            prompt:'--',
-                            start_year: (Time.now.year + 1),
-                            end_year: 1999,
-                            date_separator: '%s'),
-                          "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
-            </div>
+          <div class="field">
+            <%= f.label :finish_date , "公演終了(予定)日"  %>
+              <div class='input is-grouped'>
+                <%= raw sprintf(
+                            f.date_field(
+                              :finish_date,
+                              class:'select-date',
+                              id:"birth-date",
+                              use_month_numbers: true,
+                              prompt:'--',
+                              start_year: (Time.now.year + 1),
+                              end_year: 1999,
+                              date_separator: '%s'),
+                            "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+              </div>
           </div>
 
           <div class="field">
             <%= f.label :time_table , "タイムテーブル" ,class: "label" %>
-            <%= f.text_area :time_table , class: "textarea" %>
+            <%= f.text_area :time_table , class: "textarea",autofocus: true,placeholder:'例）' %>
           </div>
           
           <div class="field">
@@ -88,13 +88,8 @@
           </div>
 
 
-          <div class="field">
-            <%= f.label "動画のアップロード" %>
-            <%= f.file_field :video, :accept => 'video/*' %>
-          </div>
-        
-
           
+                  
           <div class="actions">
             <%= f.submit '次へ進む', class: "button is-success" %>
           </div>

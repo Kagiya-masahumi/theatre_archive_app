@@ -24,9 +24,9 @@ Rails.application.routes.draw do
     collection do
 
       get 'step1'
-      post 'step1' ,to: 'perform_steps#step1_validation'
+      post 'step1' ,to: 'perform_steps#step1_validates'
       get 'step2'
-      post 'step2',to: 'perform_steps#step2_validation'
+      post 'step2',to: 'perform_steps#create'
       get 'done'          
     end
   end

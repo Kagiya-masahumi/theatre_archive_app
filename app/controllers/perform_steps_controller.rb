@@ -15,18 +15,19 @@ class PerformStepsController < ApplicationController
     skip_company_validate(@performance.errors)
       if @performance.errors.messages.blank? && @performance.errors.details.blank?
           create_session(performance_params)
-          redirect_to step2_perform_steps_path
+          redirect_to step2_perform_steps_path and return
       else 
         render :step1
       end
   end
 
   def step2
-  @performance = Performance.new
+    @performance = Performance.new
   end
 
   def create
     set_perform_with_session
+    @performance[:video] = performance_params[:video]
     @performance[:player] = performance_params[:player]
     @performance[:staff] = performance_params[:staff]
     @performance[:writer] = performance_params[:writer]
@@ -38,6 +39,7 @@ class PerformStepsController < ApplicationController
     @performance[:play_minutes] = performance_params[:play_minutes]
     @performance[:other_notice] = performance_params[:other_notice]
     @performance[:group_id] = performance_params[:group_id]
+    binding.pry
 
     if @performance.save
       delete_session
@@ -93,9 +95,11 @@ class PerformStepsController < ApplicationController
       other_notice: performance_params[:other_notice],
       group_id: performance_params[:group_id]
     )
+    binding.pry
   end
 
   def set_perform_with_session
+    binding.pry
     @performance = Performance.new(
       title: session[:title],
       explain: session[:explain],
@@ -120,6 +124,8 @@ class PerformStepsController < ApplicationController
   end
 
   def skip_company_validate(errors)
+    errors.messages.delete(:video)  #stepの回数や入力するデータに合わせて変更してください
+    errors.details.delete(:video)
     errors.messages.delete(:player)  #stepの回数や入力するデータに合わせて変更してください
     errors.details.delete(:player)
     errors.messages.delete(:staff)  #stepの回数や入力するデータに合わせて変更してください
@@ -171,6 +177,7 @@ class PerformStepsController < ApplicationController
     session.delete(:finish_date)
     session.delete(:time_table)
     session.delete(:price)
+    session.delete(:video)
     session.delete(:player)
     session.delete(:staff)
     session.delete(:writer)
@@ -182,11 +189,5 @@ class PerformStepsController < ApplicationController
     session.delete(:rest)
     session.delete(:other_notice)
   end
-
-
-
-
-
-    #----------------------------------------------------------------------
 
 end
