@@ -3,6 +3,7 @@ class Performance < ApplicationRecord
     return self.images[input].variant(resize: '300x300!').processed
   end
   mount_uploader :video, VideoUploader
+
   with_options presence: true do
     validates :title
     validates :price
@@ -21,12 +22,13 @@ class Performance < ApplicationRecord
     validates :play_minutes
     validates :other_notice
     validates :video
+    validates :image
   end
 
   
 
   has_many :comments
-  has_one :company
+  #has_one :company
   belongs_to :group
   has_one_attached :image
 end

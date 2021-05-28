@@ -27,10 +27,7 @@
       <div class="column is-6">
         <%= form_for @performance, url: step1_perform_steps_path, method: :post do |f| %>
           
-          <div class="field">
-            <%= f.label :image, "フライヤー" %>
-            <%= f.file_field :image, class: "input" %>
-          </div>
+          
 
           <div class="field">
             <%= f.label :title, "公演タイトル", class: "label" %>
@@ -81,10 +78,34 @@
             <%= f.label :time_table , "タイムテーブル" ,class: "label" %>
             <%= f.text_area :time_table , class: "textarea",autofocus: true,placeholder:'例）' %>
           </div>
+
+          <div class="field">
+            <%= f.label :place , "劇場名" ,class: "label" %>
+            <%= f.text_field :place ,class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :play_hour,"上演予定時間:約", class: 'label'%>
+            <%= f.text_field :play_hour, class: 'text', size: "10",id: 'play_hour',autofocus: true%>時間
+            <%= f.text_field :play_minutes, class: 'text',size: "10", id: 'play_minutes',autofocus: true%>分
+          </div>
+
+          <div class="field">
+            <p>休憩時間</p>
+            <label><%= f.radio_button :rest, "あり" %> あり </label>
+            <label><%= f.radio_button :rest, "なし" %> なし</label>
+          </div>
+
+          <div class="field">
+            <p>観客</p>
+            <label><%= f.radio_button :audience, "観客あり" %> 観客の入場あり </label>
+            <label><%= f.radio_button :audience, "観客なし" %> 観客の入場なし</label>
+          </div>
+
           
           <div class="field">
-            <%= f.label :price , "金額" ,class: "label" ,placeholder:"例)2000"%>
-            <%= f.text_field :price , class: "input" %>
+            <%= f.label :price , "金額" ,class: "label" %>
+            <%= f.text_field :price, class: 'text', size: "10",id: 'price',autofocus: true,placeholder:"例)2000"%>円
           </div>
 
 

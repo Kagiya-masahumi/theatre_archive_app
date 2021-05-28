@@ -49,22 +49,18 @@ class PerformancesController < ApplicationController
                                         :video,
                                         :time_table,
                                         :price,
-                                        )
-                                .merge(group_id: current_group.id)
+                                        :player,
+                                        :staff, 
+                                        :place,
+                                        :writer,
+                                        :directer,
+                                        :play_hour,
+                                        :play_minutes,
+                                        :audience,
+                                        :rest,
+                                        :other_notice
+                                      ).merge(group_id: current_group.id)
   end
 
-  def company_params
-    params.require(:company).permit(:player,
-                                    :staff, 
-                                    :place,
-                                    :writer,
-                                    :directer,
-                                    :play_hour,
-                                    :play_minutes,
-                                    :audience,
-                                    :rest,
-                                    :other_notice
-                                  )
-  end
-
+ 
 end

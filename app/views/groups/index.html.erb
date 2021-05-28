@@ -13,7 +13,9 @@
               <div class="card-image">
                 <figure class="image">
                   <%= link_to group_path(group) do %>
-                    <%= image_tag group.image %>
+                    <% if group.image.attached?%>
+                      <%= image_tag group.image, class: "profile_image is-rounded" %>
+                    <% end %>
                   <% end %>
                 </figure>
               </div>

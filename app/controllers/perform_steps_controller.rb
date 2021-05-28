@@ -9,7 +9,9 @@ class PerformStepsController < ApplicationController
 
 
   def step1_validates
+    
     @performance = set_perform_info(performance_params)
+    binding.pry
     @performance.valid?
 
     skip_company_validate(@performance.errors)
@@ -27,20 +29,17 @@ class PerformStepsController < ApplicationController
 
   def create
     set_perform_with_session
-    @performance[:video] = performance_params[:video]
+    @performance.video = performance_params[:video]
+    @performance.image = performance_params[:image]
     @performance[:player] = performance_params[:player]
     @performance[:staff] = performance_params[:staff]
     @performance[:writer] = performance_params[:writer]
     @performance[:directer] = performance_params[:directer]
-    @performance[:audience] = performance_params[:audience]
-    @performance[:rest] = performance_params[:rest]
-    @performance[:place] = performance_params[:place]
-    @performance[:play_hour] = performance_params[:play_hour]
-    @performance[:play_minutes] = performance_params[:play_minutes]
     @performance[:other_notice] = performance_params[:other_notice]
     @performance[:group_id] = performance_params[:group_id]
     binding.pry
-
+    
+    
     if @performance.save
       delete_session
       redirect_to root_path
@@ -80,11 +79,12 @@ class PerformStepsController < ApplicationController
       explain: performance_params[:explain],
       start_date: performance_params[:start_date],
       finish_date: performance_params[:finish_date],
-      image: performance_params[:image],
+      #image: performance_params[:image],
       video: performance_params[:video],
       time_table: performance_params[:time_table],
       price: performance_params[:price],
       player: performance_params[:player],
+      place: performance_params[:place],
       staff: performance_params[:staff],
       writer: performance_params[:writer],
       directer: performance_params[:directer],
@@ -95,11 +95,9 @@ class PerformStepsController < ApplicationController
       other_notice: performance_params[:other_notice],
       group_id: performance_params[:group_id]
     )
-    binding.pry
   end
 
   def set_perform_with_session
-    binding.pry
     @performance = Performance.new(
       title: session[:title],
       explain: session[:explain],
@@ -107,7 +105,6 @@ class PerformStepsController < ApplicationController
       finish_date: session[:finish_date],
       time_table: session[:time_table],
       price: session[:price],
-      image: session[:image],
       video: session[:video],
       player: session[:player],
       staff: session[:staff],
@@ -124,27 +121,20 @@ class PerformStepsController < ApplicationController
   end
 
   def skip_company_validate(errors)
-    errors.messages.delete(:video)  #stepの回数や入力するデータに合わせて変更してください
+    errors.messages.delete(:video)  
     errors.details.delete(:video)
-    errors.messages.delete(:player)  #stepの回数や入力するデータに合わせて変更してください
+    errors.messages.delete(:player) 
     errors.details.delete(:player)
-    errors.messages.delete(:staff)  #stepの回数や入力するデータに合わせて変更してください
+    errors.messages.delete(:staff)  
     errors.details.delete(:staff)
-    errors.messages.delete(:writer)  #stepの回数や入力するデータに合わせて変更してください
+    errors.messages.delete(:writer)  
     errors.details.delete(:writer)
-    errors.messages.delete(:directer)  #stepの回数や入力するデータに合わせて変更してください
+    errors.messages.delete(:directer)  
     errors.details.delete(:directer)
-    errors.messages.delete(:play_hour)  #stepの回数や入力するデータに合わせて変更してください
-    errors.details.delete(:play_hour)
-    errors.messages.delete(:play_minutes)  #stepの回数や入力するデータに合わせて変更してください
-    errors.details.delete(:play_minutes)
-    errors.messages.delete(:place)  #stepの回数や入力するデータに合わせて変更してください
-    errors.details.delete(:place)
-    errors.messages.delete(:audience)  #stepの回数や入力するデータに合わせて変更してください
-    errors.details.delete(:audience)
-    errors.messages.delete(:rest)  #stepの回数や入力するデータに合わせて変更してください
-    errors.details.delete(:rest)
-    errors.messages.delete(:other_notice)  #stepの回数や入力するデータに合わせて変更してください
+    errors.messages.delete(:image)  
+    errors.details.delete(:image)
+    
+    errors.messages.delete(:other_notice) 
     errors.details.delete(:other_notice)
   end
 
@@ -155,7 +145,7 @@ class PerformStepsController < ApplicationController
     session[:finish_date] = performance_params[:finish_date]
     session[:time_table] = performance_params[:time_table]
     session[:price] = performance_params[:price]
-    session[:image] = performance_params[:image]
+    #session[:image] = performance_params[:image]
     session[:video] = performance_params[:video]
     session[:player] = performance_params[:player]
     session[:staff] = performance_params[:staff]
