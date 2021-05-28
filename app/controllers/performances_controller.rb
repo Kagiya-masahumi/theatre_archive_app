@@ -3,7 +3,7 @@ class PerformancesController < ApplicationController
   
 
   def index
-    @performances = Performance.all
+    @performances = Performance.all.order("created_at DESC")
   end
 
 
