@@ -1,17 +1,16 @@
 class PerformancesController < ApplicationController
   before_action :authenticate_group!,except: [:index]
+  
 
   def index
     @performances = Performance.all
   end
 
+
   def show
     @performance = Performance.find(params[:id])
   end
 
-  def new
-    @performance = Performance.new
-  end
 
   def edit
     @performance = Performance.find(params[:id])
@@ -21,17 +20,7 @@ class PerformancesController < ApplicationController
 
   end
 
-  def create
-
-    @performance = Performance.new(performance_params)
-    if @performance.save
-      redirect_to performances_path(@performance), notice: "投稿に成功しました。"
-    else
-      render :new
-      
-    end
-  end
-
+  
   def update
     @performance = Performance.find(params[:id])
     if @performance.update(performance_params)
@@ -50,26 +39,28 @@ class PerformancesController < ApplicationController
   
 
   private
+  #userとprofileのストロングパラメータ
   def performance_params
     params.require(:performance).permit(:title,
                                         :explain, 
-                                        :player,
-                                        :staff, 
-                                        :place, 
                                         :start_date, 
                                         :finish_date, 
                                         :image,
                                         :video,
                                         :time_table,
+                                        :price,
+                                        :player,
+                                        :staff, 
+                                        :place,
                                         :writer,
                                         :directer,
                                         :play_hour,
                                         :play_minutes,
-                                        :price,
                                         :audience,
                                         :rest,
-                                        :other_notice)
-                                .merge(group_id: current_group.id)
+                                        :other_notice
+                                      ).merge(group_id: current_group.id)
   end
 
+ 
 end

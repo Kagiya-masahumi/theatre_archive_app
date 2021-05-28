@@ -47,8 +47,12 @@
       <div class="column is-4">
           <article class="panel is-link">
             <p class="panel-heading">
-              <%= image_tag @performance.image %>
-              By <%= @performance.group.name %>
+              <% if @performance.image.attached?%>
+                <%= image_tag  @performance.image %>
+              <% end %>
+              <% if @performance.group.image.attached?%>
+                By   <%= image_tag @performance.group.image %>
+              <% end %>
             </p>
             <div class="panel-block">
               <p class="control">

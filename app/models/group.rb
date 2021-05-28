@@ -12,6 +12,8 @@ class Group < ApplicationRecord
           validates :chair_person
           validates :image
         end
+        validates :password,
+            format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "は6文字以上かつ英数字をそれぞれ含めてください" }
 
         has_many :performances, dependent: :destroy
         has_one_attached :image

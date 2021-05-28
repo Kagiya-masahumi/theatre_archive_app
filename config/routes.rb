@@ -18,7 +18,19 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :users
-  resources :tops
+  #resources :comments
+
+  resources :perform_steps do
+    collection do
+
+      get 'step1'
+      post 'step1' ,to: 'perform_steps#step1_validates'
+      get 'step2'
+      post 'step2',to: 'perform_steps#create'
+      get 'done'          
+    end
+  end
+
 
   
 

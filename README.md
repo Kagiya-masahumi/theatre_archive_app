@@ -1,5 +1,4 @@
 # README
-
 # テーブル設計
 
 ## users テーブル
@@ -31,10 +30,7 @@
 
 
 ### Association
-
 - has_many :performances, dependent: :destroy
-
-
 
 
 ## performance テーブル

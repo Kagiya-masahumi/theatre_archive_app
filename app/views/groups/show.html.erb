@@ -15,7 +15,10 @@
     <tr>
       <td class="is-size-4">
       <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
+      <% if @group.image.attached?%>
         <%= image_tag @group.image, class: "profile_image is-rounded" %>
+      <% end %>
+        
       </figure>
         <strong><%= @group.name %></strong>
       </td>
