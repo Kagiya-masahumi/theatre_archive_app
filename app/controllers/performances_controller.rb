@@ -11,7 +11,6 @@ class PerformancesController < ApplicationController
     @performance = Performance.find(params[:id])
   end
 
-
   def edit
     @performance = Performance.find(params[:id])
     if @performance.group != current_group
