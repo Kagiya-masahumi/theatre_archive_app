@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-    before_action :authenticate_group!, except: [:index]
+    before_action :authenticate_group!, except: [:index,:show]
   
     def index
       @groups = Group.all

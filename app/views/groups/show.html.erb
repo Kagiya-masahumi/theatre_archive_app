@@ -1,3 +1,4 @@
+<% if group_signed_in? && group.id == current_group.id %>
 <section class="hero is-success">
   <div class="hero-body">
     <div class="container">
@@ -8,7 +9,19 @@
   </div>
 </section>
 
-<%= "#{current_group.name}様のマイページ"%>
+  <%= "#{current_group.name}様のマイページ"%>
+<% else %>
+  <section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= "#{@group.name}のページ" %>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<% end %>
 
 <section class="section">
   <div class="container">
@@ -22,13 +35,15 @@
       </figure>
         <strong><%= @group.name %></strong>
       </td>
-      <% if @group.id == current_group.id %>
-      <td class="is-size-4">
-        <%= @group.email %>
-      </td>
-      <td>
-        <%=link_to "編集", edit_group_path(@group), class: "button is-primary"%>
-      </td>
+      <% if group_signed_in? && group.id == current_group.id %>
+        <% if @group.id == current_group.id %>
+        <td class="is-size-4">
+          <%= @group.email %>
+        </td>
+        <td>
+          <%=link_to "編集", edit_group_path(@group), class: "button is-primary"%>
+        </td>
+        <% end %>
       <% end %>
     </tr>
   </table>
