@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
 
-  resources :performances
+  resources :performances, only:[:index, :show, :edit, :update, :destroy]
+  put 'performances/:id/edit', to: 'performances#update'
 
   root to: "performances#index"
   
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   resources :users
   #resources :comments
 
-  resources :perform_steps do
+  resources :perform_steps,except:[:edit, :update] do
     collection do
 
       get 'step1'

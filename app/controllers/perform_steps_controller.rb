@@ -37,8 +37,6 @@ class PerformStepsController < ApplicationController
     @performance[:other_notice] = performance_params[:other_notice]
     @performance[:group_id] = performance_params[:group_id]
 
-    
-    
     if @performance.save
       delete_session
       redirect_to root_path
