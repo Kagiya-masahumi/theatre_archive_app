@@ -44,8 +44,8 @@
                   </figure>
                 </div>
                 <div class="media-content">
-                  <div class="title"><%=link_to perform.title, performance_path(perform.id) %></div>
-                  <div class="content"><%=link_to perform.group.name, group_path(perform.group) %></div>
+                  <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
+                  <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
                 </div>
               </div>
 
