@@ -1,2 +1,91 @@
-<h1>Groups#edit</h1>
-<p>Find me in app/views/groups/edit.html.erb</p>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        編集画面
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+        <%# form_for(resource, as: resource_name, url: group_registration_path(resource_name)) do |f| %>
+        <%= form_with model: @group, url: group_path, method: :put, local: true do |f| %>
+        
+        <%= render 'shared/error_messages', model: f.object %>
+
+          <div class="field">
+            <%= f.label :name ,"団体名", class: "label"%>
+            <p class="control has-icon-left">
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", :placeholder => "団体名", class: "input" %>
+            </p>
+          </div>
+
+          <div class="field">
+            <%= f.label :email ,"メールアドレス",class: "label"%>
+            <p class="control has-icon-left">
+            <span class="icon is-small is-left">
+              <i class="far fa-envelope"></i>
+            </span>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
+            </p>
+          </div>
+
+          <div class="field">
+            <%= f.label :password ,"パスワード",class: "label"%>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <p class="control has-icon-left">
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "input" %>
+                <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+                </span>
+              </p>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation ,"パスワード再入力",class: "label"%>
+            <p class="control has-icon-left">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: "password confirmation" , class: "input"%>
+              <span class="icon is-small">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>            
+          </div>
+
+          <div class="field">
+            <%= f.label :chair_person ,"代表者",class: "label"%>
+            <p class="control has-icon-left">
+              <%= f.text_field :chair_person, autofocus: true, autocomplete: "group_name", :placeholder => "代表者名", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+
+
+          <div class="field">
+            <%= f.label :profile , "劇団紹介" ,class: "label" %>
+            <%= f.text_area :profile , class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <p>
+              ロゴのアップロード
+            </p>
+            <%= f.file_field :image, class: "input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "修正",class: "button is-success" %>
+          </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
