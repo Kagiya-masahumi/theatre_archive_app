@@ -1,9 +1,9 @@
-<h1>ここにホームページ</h1>
+
 
 <% if group_signed_in? %>
   <%= "ようこそ、#{current_group.name}様" %>
 <% elsif user_signed_in? %>
-  <%= "ようこそ、#{current_user.nickname}様" %>
+  <strong><%= "ようこそ、#{current_user.nickname}様" %></strong>
 <% end %>
 
   
