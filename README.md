@@ -67,6 +67,21 @@
 - belongs_to :performance
 
 
+## Favorite テーブル
+
+| Column            | Type        | Options                            |
+| --------          | ------      | -----------                        |
+| performance    | references  |                 |
+| user           | references  |                 |
+|
+
+
+### Association
+
+- belongs_to :performance
+- belongs_to :user
+
+
 
 //## orders テーブル
 
