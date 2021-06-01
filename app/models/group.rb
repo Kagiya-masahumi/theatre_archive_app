@@ -18,4 +18,5 @@ class Group < ApplicationRecord
         has_many :performances, dependent: :destroy
         has_one_attached :image
         
+        
 end

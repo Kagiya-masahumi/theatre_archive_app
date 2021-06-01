@@ -28,7 +28,6 @@ class Performance < ApplicationRecord
   
 
   has_many :comments
-  #has_one :company
   belongs_to :group
   has_one_attached :image
 end

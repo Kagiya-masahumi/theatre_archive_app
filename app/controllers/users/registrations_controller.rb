@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(user_params)
+    binding.pry
     if @user.save
       bypass_sign_in(@user)
       redirect_to root_path
@@ -21,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :name, :family_name, :image)
+    params.require(:user).permit(:nickname,:profile, :email, :password, :password_confirmation, :name, :family_name, :image)
   end
 
   

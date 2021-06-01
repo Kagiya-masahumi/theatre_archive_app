@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   
 
-  resources :performances
+  resources :performances, only:[:index, :show, :edit, :update, :destroy] do
+    resources :comments, only: :create
+  end
+  
+    
+  put 'performances/:id/edit', to: 'performances#update'
 
   root to: "performances#index"
+
   
   devise_for :groups, controllers: {
     sessions:      'groups/sessions',
@@ -18,9 +24,9 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :users
-  #resources :comments
+  
 
-  resources :perform_steps do
+  resources :perform_steps,except:[:edit, :update] do
     collection do
 
       get 'step1'

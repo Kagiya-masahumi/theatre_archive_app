@@ -1,9 +1,9 @@
-<h1>ここにホームページ</h1>
+
 
 <% if group_signed_in? %>
   <%= "ようこそ、#{current_group.name}様" %>
 <% elsif user_signed_in? %>
-  <%= "ようこそ、#{current_user.nickname}様" %>
+  <strong><%= "ようこそ、#{current_user.nickname}様" %></strong>
 <% end %>
 
   
@@ -44,7 +44,8 @@
                   </figure>
                 </div>
                 <div class="media-content">
-                  <div class="title"><%=link_to perform.group.name, group_path(perform.group) %></div>
+                  <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
+                  <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
                 </div>
               </div>
 

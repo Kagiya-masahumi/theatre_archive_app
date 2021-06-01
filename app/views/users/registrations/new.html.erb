@@ -26,7 +26,17 @@
             </p>
           </div>
 
+          <div class="field">
+            <%= f.label :profile ,class: "label"%>
+            <p class="control has-icon-left">
+              <%= f.text_area :profile, autofocus: true, autocomplete: "profile", :placeholder => "自己紹介してみよう！", class: "textarea" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
 
+          
           <div class="field">
             <%= f.label :email ,class: "label"%>
             <p class="control has-icon-left">

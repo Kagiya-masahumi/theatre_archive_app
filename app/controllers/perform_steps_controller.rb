@@ -11,7 +11,6 @@ class PerformStepsController < ApplicationController
   def step1_validates
     
     @performance = set_perform_info(performance_params)
-    binding.pry
     @performance.valid?
 
     skip_company_validate(@performance.errors)
@@ -37,9 +36,7 @@ class PerformStepsController < ApplicationController
     @performance[:directer] = performance_params[:directer]
     @performance[:other_notice] = performance_params[:other_notice]
     @performance[:group_id] = performance_params[:group_id]
-    binding.pry
-    
-    
+
     if @performance.save
       delete_session
       redirect_to root_path

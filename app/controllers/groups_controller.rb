@@ -1,16 +1,15 @@
 class GroupsController < ApplicationController
-    before_action :authenticate_group!, except: [:index]
+    before_action :authenticate_group!, except: [:index,:show]
+    before_action :set_group, only:[:show, :edit, :update]
   
     def index
       @groups = Group.all
     end
   
     def show
-      @group = Group.find(params[:id])
     end
   
     def edit
-      @group = Group.find(params[:id])
       if @group != current_group
         redirect_to groups_path, alert: "不正なアクセスです。"
       end
@@ -18,9 +17,10 @@ class GroupsController < ApplicationController
     end
   
     def update
-      @group = Group.find(params[:id])
+      binding.pry
       if  @group.update(group_params)
-        redirect_to group_path(@group), notice: "更新に成功しました。"
+        bypass_sign_in(@group)
+        redirect_to root_path, notice: "更新に成功しました。"
       else
         render :edit
       end
@@ -31,6 +31,9 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :email, :password, :password_confirmation, :chair_person,:profile ,:image)
     end
 
-  
-  end
+    def set_group
+      @group = Group.find(params[:id])
+    end
+    
+end
   

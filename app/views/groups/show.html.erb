@@ -1,3 +1,4 @@
+
 <section class="hero is-success">
   <div class="hero-body">
     <div class="container">
@@ -8,43 +9,55 @@
   </div>
 </section>
 
-<%= "#{current_group.name}様のマイページ"%>
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+    
+      <% if @group.id == current_group.id %>
+        <%= "#{current_group.name}様のマイページ"%>
+      <% else %>
+        <%= "#{@group.name}のページ" %>
+      <% end %>
+      </h1>
+    </div>
+  </div>
+</section>
+
+
+
+
 
 <section class="section">
   <div class="container">
-    <tr>
-      <td class="is-size-4">
-      <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
-      <% if @group.image.attached?%>
-        <%= image_tag @group.image, class: "profile_image is-rounded" %>
-      <% end %>
-        
-      </figure>
-        <strong><%= @group.name %></strong>
-      </td>
-      <% if @group.id == current_group.id %>
-      <td class="is-size-4">
-        <%= @group.email %>
-      </td>
-      <td>
-        <%=link_to "編集", edit_group_path(@group), class: "button is-primary"%>
-      </td>
-      <% end %>
-    </tr>
-  </table>
-  <table class="table is-fullwidth">
-    <tr>
-      <td>
-        <%= @group.profile %>
-      </td>
-    </tr>
-  </table>
-
-
-
-
-
-
+    <table class="table is-fullwidth"> 
+      <tr>
+        <td class="is-size-4">
+        <figure class="image is-128x128"  style="margin-left: auto; margin-right: auto;">
+        <% if @group.image.attached?%>
+          <%= image_tag @group.image, class: "profile_image is-rounded" %>
+        <% end %>
+          
+        </figure>
+          <strong><%= @group.name %></strong>
+        </td>
+        <% if @group.id == current_group.id %>
+          <td class="is-size-4">
+            <%= @group.email %>
+          </td>
+          <td>
+            <%=link_to "編集", edit_group_path(@group), class: "button is-primary"%>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+    <table class="table is-fullwidth">
+      <tr>
+        <td>
+          <%= @group.profile %>
+        </td>
+      </tr>
+    </table>
   </div>
 </section>
     
