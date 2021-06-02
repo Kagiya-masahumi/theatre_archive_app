@@ -1,0 +1,3 @@
+
+(".performance_<%= @performance.id %>").html("<%= j(render 'performances/performance',  post: @performance ) %>")
+  <!-- ｊ メソッドで、JSとして認識してくれて、非同期で更新してくれる -->

@@ -12,7 +12,12 @@ class User < ApplicationRecord
         validates :family_name, presence: true
 
         has_many :comments, dependent: :destroy
+        has_many :favorites, dependent: :destroy
+        has_many :favorite_performances, through: :favorites
         has_one_attached :image
-
+        
+        def favorited_by?(performance_id)
+          favorites.where(performance_id: performance_id).exists?
+        end
 
 end

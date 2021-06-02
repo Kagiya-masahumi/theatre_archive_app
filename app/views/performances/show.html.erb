@@ -42,7 +42,23 @@
               </div>
             <% end %>
           </div>
-          <p>※いいね数を表示</p>
+          <div id="<%= @performance.id %> favorite">
+            <% if !Favorite.exists?(user: current_user, performance_id: @performance.id) %>
+              <%= link_to performance_favorites_path(@performance), method: :post, remote: true, class: "favorite-btn favorite-performance" do %>
+              <div class="i far fa-thumbs-up">
+                <span>いいね！</span>
+                <%= @performance.favorites.length %>
+              </div>
+              <% end %>
+            <% else %>
+              <%= link_to performance_favorites_path(@performance), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+                <div class="i far fa-thumbs-up">
+                  <span>いいね！</span>
+                  <%= @performance.favorites.length %>
+                <% end %>
+                </div>
+            <% end %>
+          </div>
           <p>※ユーザーログインしていれば「いいね」のボタン</p>
 
         </div>

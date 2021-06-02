@@ -17,44 +17,15 @@
   </div>
 </section>
 
+
+
 <section class="section">
   <div class="container">
     <div class="columns is-multiline">
       <% @performances.each do |perform| %>
-        <div class="column is-4">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <%= link_to performance_path(perform.id) do %>
-                  <% if perform.image.attached?%>
-                    <%= image_tag perform.image %>
-                  <% end %>
-                <% end %>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <% link_to group_path(perform.group.id) do %>
-                      <% if perform.group.image.attached?%>
-                        <%= image_tag perform.group.image %>
-                      <% end %>
-                    <% end %>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
-                  <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
-                </div>
-              </div>
-
-              <div class="content">
-                <time><%= perform.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-              </div>
-            </div>
-          </div>
-        </div>
+        <tr class="performance_<%= perform.id %>">
+          <%= render "performance", perform: perform  %>
+        </tr>
       <% end %>
     </div>
   </div>

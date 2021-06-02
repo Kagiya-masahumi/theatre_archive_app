@@ -28,6 +28,7 @@ class Performance < ApplicationRecord
   
 
   has_many :comments
+  has_many :favorites, dependent: :destroy
   belongs_to :group
   has_one_attached :image
 end

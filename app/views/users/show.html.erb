@@ -53,6 +53,10 @@
 
 <p>お気に入りの実装</p>
 <p>お気にいりの公演情報とリンク</p>
+<% if @favorite_list.present? %>
+  <% @favorite_list.each do |post| %>
+  <%= post.title %>
+  
 
 <%#<section class="section">
   <div class="container">

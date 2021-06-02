@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :performances, only:[:index, :show, :edit, :update, :destroy] do
     resources :comments, only: :create
+    resources :favorites, only: [:create, :destroy]
   end
   
     
@@ -23,7 +24,11 @@ Rails.application.routes.draw do
   }
 
   resources :groups
-  resources :users
+  resources :users 
+  post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
+  delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
+
+
   
 
   resources :perform_steps,except:[:edit, :update] do

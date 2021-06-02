@@ -68,4 +68,4 @@ gem 'active_hash'
 gem 'fog-aws'
 gem 'dotenv-rails'
 gem 'wicked'
-
+gem 'jquery-rails'
