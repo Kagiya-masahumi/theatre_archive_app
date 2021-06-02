@@ -5,12 +5,10 @@ class FavoritesController < ApplicationController
 
 
   def create
-   
     @favorite = Favorite.create(user_id: current_user.id, performance_id: @performance.id)
   end
 
   def destroy
-    binding.pry
     favorite = Favorite.find_by(user_id: current_user.id, performance_id: @performance.id)
     favorite.destroy
     redirect_to performances_path
