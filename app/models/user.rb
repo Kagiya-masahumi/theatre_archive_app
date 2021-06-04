@@ -20,4 +20,7 @@ class User < ApplicationRecord
           favorites.where(performance_id: performance_id).exists?
         end
 
+        has_many :favorites,foreign_key: "user_id"
+        has_many :favorite_performances, through: :performances, source: :performance
+
 end

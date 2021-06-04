@@ -3,13 +3,15 @@ Rails.application.routes.draw do
 
   resources :performances, only:[:index, :show, :edit, :update, :destroy] do
     resources :comments, only: :create
-    resources :favorites, only: [:create, :destroy]
   end
   
     
   put 'performances/:id/edit', to: 'performances#update'
 
   root to: "performances#index"
+
+  post 'favorite/:perform_id' => 'favorites#create', as: :create
+  delete 'favorite/:perform_id' => 'favorites#destroy', as: :destroy
 
   
   devise_for :groups, controllers: {
@@ -25,12 +27,7 @@ Rails.application.routes.draw do
 
   resources :groups
   resources :users 
-  post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
-  delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
-
-
   
-
   resources :perform_steps,except:[:edit, :update] do
     collection do
 

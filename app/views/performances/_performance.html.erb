@@ -1,39 +1,15 @@
-<div class="column is-4">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <%= link_to performance_path(perform.id) do %>
-          <% if perform.image.attached?%>
-            <%= image_tag perform.image %>
-          <% end %>
-        <% end %>
-      </figure>
-      <% if current_user.favorited_by?(perform.id) %>
-        <td><%= link_to 'いいねを外す', destroy_favorite_path(perform), method: :DELETE, remote: true %><%= perform.favorites.count %></td>
-      <% else %>
-        <td><%= link_to 'いいね！', create_favorite_path(perform), method: :POST, remote: true %><%= perform.favorites.count %></td>
-      <% end %>
-                  </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <% link_to group_path(perform.group.id) do %>
-              <% if perform.group.image.attached?%>
-                <%= image_tag perform.group.image %>
-              <% end %>
-            <% end %>
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
-          <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
-        </div>
-      </div>
 
-      <div class="content">
-        <time><%= perform.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-      </div>
-    </div>
+
+<% if current_user.favorites.find_by(performance_id: perform.id) %>
+  <%= link_to destroy_path(perform.id), method: :delete, remote: true do %>
+  <div class= "iine__button">
+    ❤️：<%= perform.favorites.count %>
   </div>
-</div>
+  <% end %>
+<% else %>
+  <%= link_to create_path(perform.id), method: :post, remote: true do %>
+  <div class = "iine__button">
+    ♡️：<%= perform.favorites.count %>
+  </div>
+  <% end %>
+<% end %>

@@ -1,2 +1,3 @@
 
-(".performance_<%= @performance.id %>").html("<%= j(render 'performances/performance',  post: @performance ) %>")
+
+$("<%= @id_name %>").html('<%= escape_javascript(render("performances/performance", perform: @performance  )) %>');
