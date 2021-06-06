@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   }
 
   resources :groups
-  resources :users 
+  resources :users do 
+    get :favorites, on: :collection
+  end
+  
   
   resources :perform_steps,except:[:edit, :update] do
     collection do
