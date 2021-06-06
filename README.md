@@ -55,16 +55,31 @@
 
 ## comments テーブル
 
-| Column         | Type        | Options         |
-| --------       | ------      | ---------       |
-| text           | text        | null: false     |
-| performance    | references  |                 |
-| user           | references  |                 |
+| Column         | Type        | Options                        |
+| --------       | ------      | ---------                      |
+| text           | text        | null: false                    |
+| performance    | references  | null: false, foreign_key: true |
+| user           | references  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :performance
+
+
+## Favorite テーブル
+
+| Column         | Type        | Options                        |
+| --------       | ------      | -----------                    |
+| performance    | references  | null: false, foreign_key: true |
+| user           | references  | null: false, foreign_key: true |
+
+
+
+### Association
+
+- belongs_to :performance
+- belongs_to :user
 
 
 

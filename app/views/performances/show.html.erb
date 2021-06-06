@@ -42,8 +42,11 @@
               </div>
             <% end %>
           </div>
-          <p>※いいね数を表示</p>
-          <p>※ユーザーログインしていれば「いいね」のボタン</p>
+          
+          <div class= "favorite" id="performance-link-<%= @performance.id %>">
+          <%= render "performances/performance", perform: @performance %>
+          </div>
+          
 
         </div>
         <div class="card">

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   root to: "performances#index"
 
+  post 'favorite/:perform_id' => 'favorites#create', as: :create
+  delete 'favorite/:perform_id' => 'favorites#destroy', as: :destroy
+
   
   devise_for :groups, controllers: {
     sessions:      'groups/sessions',
@@ -23,9 +26,11 @@ Rails.application.routes.draw do
   }
 
   resources :groups
-  resources :users
+  resources :users do 
+    get :favorites, on: :collection
+  end
   
-
+  
   resources :perform_steps,except:[:edit, :update] do
     collection do
 
