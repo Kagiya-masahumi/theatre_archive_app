@@ -5,11 +5,9 @@
     <div class="container">
       <h1 class="title">
       <% if group_signed_in? %>
-      
-        <% if @group.id == @current_group.id %>
+        <% if @group.id == current_group.id %>
           <%= "マイページ"%>
         <% end %>
-
       <% else %>
         <%= "#{@group.name}のページ" %>
       <% end %>

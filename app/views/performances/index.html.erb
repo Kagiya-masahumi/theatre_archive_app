@@ -39,20 +39,23 @@
           </div>
 
                 </div>
+          <div class="title is-centered">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
                     <% link_to group_path(perform.group.id) do %>
-                      <% if perform.group.image.attached?%>
+                      <% if perform.group.image.attached? %>
+                      
                         <%= image_tag perform.group.image %>
                       <% end %>
                     <% end %>
                   </figure>
                 </div>
                 <div class="media-content">
-                  <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
+                  
                   <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
+                  <p>ここにタグが縦に表示</p>
                 </div>
               </div>
 
