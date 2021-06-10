@@ -19,6 +19,35 @@
 
 
 <p>劇団のロゴを出現させたい</p>
+<p class="tag-word">
+  ジャンルで検索
+  <% @tags1.each do |genre| %>
+    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
+  <% end %>
+</p>
+
+<p class="tag-word">
+  地域で検索
+  <% @tags2.each do |genre| %>
+    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
+  <% end %>
+</p>
+
+<p class="tag-word">
+  値段で検索
+  <% @tags3.each do |genre| %>
+    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
+  <% end %>
+</p>
+
+<p class="tag-word">
+  おすすめ
+  <% @tags4.each do |genre| %>
+    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
+  <% end %>
+</p>
+
+
 <section class="section">
   <div class="container">
     <div class="columns is-multiline">

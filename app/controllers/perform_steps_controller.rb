@@ -1,6 +1,7 @@
 class PerformStepsController < ApplicationController
   before_action :redirect_to_index_from_company,only: :company_perform_step_index
   def index
+    
   end
 
   def step1
@@ -24,6 +25,16 @@ class PerformStepsController < ApplicationController
 
   def step2
     @performance = Performance.new
+    @tags1 = ActsAsTaggableOn::Tag.where("id < ?", 10)
+    @tags2 = ActsAsTaggableOn::Tag.where(id: 11..22)
+    @tags3 = ActsAsTaggableOn::Tag.where(id: 23...29)
+    @tags4 = ActsAsTaggableOn::Tag.where(id: 29...31)
+
+    if params[:tag_name]
+      @performances = Performance.tagged_with("#{params[:tag_name]}").includes(:recruiter)
+    else
+      @performances = Performance.all.includes(:recruiter)
+    end
   end
 
   def create
@@ -65,7 +76,8 @@ class PerformStepsController < ApplicationController
                                         :play_minutes,
                                         :audience,
                                         :rest,
-                                        :other_notice
+                                        :other_notice,
+                                        :tag_list
                                       ).merge(group_id: current_group.id)
   end
 

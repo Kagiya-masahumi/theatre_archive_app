@@ -34,5 +34,7 @@ class Performance < ApplicationRecord
   has_many :tags, through: :perform_tags
   belongs_to :group
   has_one_attached :image
+
+  acts_as_taggable
   
 end

@@ -6,6 +6,20 @@ class PerformancesController < ApplicationController
   def index
     @performances = Performance.all.order("created_at DESC")
     @groups = Group.all
+    @tags1 = ActsAsTaggableOn::Tag.where("id < ?", 10)
+    @tags2 = ActsAsTaggableOn::Tag.where(id: 11..22)
+    @tags3 = ActsAsTaggableOn::Tag.where(id: 23...29)
+    @tags4 = ActsAsTaggableOn::Tag.where(id: 29...31)
+
+
+
+
+
+    if params[:tag_name]
+      @performances = Performance.tagged_with("#{params[:tag_name]}").includes(:group).order("created_at DESC")
+    else
+      @performances = Performance.all.includes(:group).order("created_at DESC")
+    end
   end
 
 
@@ -58,7 +72,8 @@ class PerformancesController < ApplicationController
                                         :play_minutes,
                                         :audience,
                                         :rest,
-                                        :other_notice
+                                        :other_notice,
+                                        :tag_list
                                       ).merge(group_id: current_group.id)
   end
 
