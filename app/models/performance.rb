@@ -30,7 +30,7 @@ class Performance < ApplicationRecord
   has_many :comments
   has_many :favorites, dependent: :destroy
   has_many :favorite_performances, through: :favorites, source: :performance
-  has_many :perform_tags
+  has_many :perform_tags,dependent: :destroy
   has_many :tags, through: :perform_tags
   belongs_to :group
   has_one_attached :image

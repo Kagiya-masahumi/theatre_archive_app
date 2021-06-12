@@ -95,6 +95,9 @@
                 <%= simple_format(@performance.explain) %>
               </p>
             </div>
+            <label class="col-sm-12 my-top">
+              <%= raw(@style.tag_list.map { |t| link_to t, tag_path(t), class: "label label-default" }.join(' ')) %>
+            </label>
             <div class="panel-block">
               <p class="control">
                 <%= "キャスト：" %>

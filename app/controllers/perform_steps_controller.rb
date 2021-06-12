@@ -24,16 +24,14 @@ class PerformStepsController < ApplicationController
   end
 
   def step2
+    binding.pry
     @performance = Performance.new
-    @tags1 = ActsAsTaggableOn::Tag.where("id < ?", 10)
-    @tags2 = ActsAsTaggableOn::Tag.where(id: 11..22)
-    @tags3 = ActsAsTaggableOn::Tag.where(id: 23...29)
-    @tags4 = ActsAsTaggableOn::Tag.where(id: 29...31)
+    @tags = ActsAsTaggableOn::Tag.all
 
     if params[:tag_name]
-      @performances = Performance.tagged_with("#{params[:tag_name]}").includes(:recruiter)
+      @performances = Performance.tagged_with("#{params[:tag_name]}").includes(:group)
     else
-      @performances = Performance.all.includes(:recruiter)
+      @performances = Performance.all.includes(:group)
     end
   end
 
@@ -46,12 +44,18 @@ class PerformStepsController < ApplicationController
     @performance[:writer] = performance_params[:writer]
     @performance[:directer] = performance_params[:directer]
     @performance[:other_notice] = performance_params[:other_notice]
+    @performance.tag_list = performance_params[:tag_list]
     @performance[:group_id] = performance_params[:group_id]
+    tag_list = params[:performance][:tag_list]
 
+    binding.pry
     if @performance.save
+      @performance.save_tags # save_tagsというインスタンスメソッドを使って保存している。
+      flash[:notice] = "公演の投稿が完了しました"[]
       delete_session
       redirect_to root_path
     else
+      @tags = ActsAsTaggableOn::Tag.all
       render :step2
     end  
   end
@@ -77,7 +81,7 @@ class PerformStepsController < ApplicationController
                                         :audience,
                                         :rest,
                                         :other_notice,
-                                        :tag_list
+                                        tag_list:[]
                                       ).merge(group_id: current_group.id)
   end
 
@@ -88,7 +92,6 @@ class PerformStepsController < ApplicationController
       explain: performance_params[:explain],
       start_date: performance_params[:start_date],
       finish_date: performance_params[:finish_date],
-      #image: performance_params[:image],
       video: performance_params[:video],
       time_table: performance_params[:time_table],
       price: performance_params[:price],
@@ -102,7 +105,8 @@ class PerformStepsController < ApplicationController
       audience: performance_params[:audience],
       rest: performance_params[:rest],
       other_notice: performance_params[:other_notice],
-      group_id: performance_params[:group_id]
+      group_id: performance_params[:group_id],
+      tag_list: performance_params[:tag_list]
     )
   end
 

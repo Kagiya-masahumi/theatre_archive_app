@@ -6,13 +6,14 @@ class PerformancesController < ApplicationController
   def index
     @performances = Performance.all.order("created_at DESC")
     @groups = Group.all
-    @tags1 = ActsAsTaggableOn::Tag.where("id < ?", 10)
-    @tags2 = ActsAsTaggableOn::Tag.where(id: 11..22)
-    @tags3 = ActsAsTaggableOn::Tag.where(id: 23...29)
-    @tags4 = ActsAsTaggableOn::Tag.where(id: 29...31)
-
-
-
+    @tags = ActsAsTaggableOn::Tag.all
+    # タグの一覧表示
+    if params[:tag]
+      @performances = Performance.tagged_with(params[:tag])
+      # タグ検索時にそのタグづけしているものを表示
+    else
+      @performance = Performance.all
+    end
 
 
     if params[:tag_name]
@@ -53,7 +54,6 @@ class PerformancesController < ApplicationController
   
 
   private
-  #userとprofileのストロングパラメータ
   def performance_params
     params.require(:performance).permit(:title,
                                         :explain, 
@@ -73,7 +73,7 @@ class PerformancesController < ApplicationController
                                         :audience,
                                         :rest,
                                         :other_notice,
-                                        :tag_list
+                                        tag_list:[]
                                       ).merge(group_id: current_group.id)
   end
 

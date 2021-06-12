@@ -20,33 +20,13 @@
 
 <p>劇団のロゴを出現させたい</p>
 <p class="tag-word">
-  ジャンルで検索
-  <% @tags1.each do |genre| %>
-    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
+ 
+<div class="col-xs-12">
+  <% @tags.each do |tag| %>
+      <%# <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name), class: "label label-default" %> 
+      <%= link_to "#{tag.name}(#{tag.taggings_count})", class: "label label-default" %>
   <% end %>
-</p>
-
-<p class="tag-word">
-  地域で検索
-  <% @tags2.each do |genre| %>
-    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
-  <% end %>
-</p>
-
-<p class="tag-word">
-  値段で検索
-  <% @tags3.each do |genre| %>
-    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
-  <% end %>
-</p>
-
-<p class="tag-word">
-  おすすめ
-  <% @tags4.each do |genre| %>
-    <%= link_to "#{genre.name}(#{genre.taggings_count})", performances_path(tag_name: genre.name), class: "tag-link" %>
-  <% end %>
-</p>
-
+</div>
 
 <section class="section">
   <div class="container">
@@ -84,7 +64,14 @@
                 <div class="media-content">
                   
                   <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
-                  <p>ここにタグが縦に表示</p>
+                    <%# binding.pry %>
+                    <p>ここにもタグ</p>
+                  <% perform.tags.each do |tag| %>
+                    <div class="chip">
+                      <%= tag.name %>
+                      <i class="close material-icons">close</i>
+                    </div>
+                  <% end %>
                 </div>
               </div>
 

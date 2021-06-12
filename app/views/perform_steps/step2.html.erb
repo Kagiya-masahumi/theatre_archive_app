@@ -2,6 +2,14 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-6">
+
+        <label class="col-sm-12">タグ</label>
+            <div class="col-sm-12">
+              <% @tags.each do |tag| %>
+                <%= f.check_box :tag_list, { multiple: true }, "#{tag.name}", nil %>
+                <%= f.label " #{tag.name}(#{tag.taggings_count})", class: "label label-default" %>
+              <% end %>
+            </div>
         <%= form_for @performance, url: step2_perform_steps_path, :multipart => true ,method: :post do |f| %>
           
 
@@ -17,10 +25,7 @@
             <%= f.file_field :video, accept: 'video/*' %>
           </div>
 
-          <div class="field">
-            <%= f.label :tag_list , "タグ付け" ,class: "label" %>
-            <%= f.text_field :tag_list ,value: @event.tag_list.join(','), placeholder: "演劇,東京,・・・", class: "input" ,id: 'tag_list',autofocus: true%>
-          </div>
+          
 
           <div class="field">
             <%= f.label :writer , "脚本" ,class: "label" %>

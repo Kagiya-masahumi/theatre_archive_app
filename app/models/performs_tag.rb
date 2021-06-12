@@ -1,5 +1,8 @@
 class PerformsTag
 
+  belongs_to :performance,foreign_key: true
+  belongs_to :tag, foreign_key: true
+
   include ActiveModel::Model
   attr_accessor :title,
                 :explain,
@@ -39,30 +42,6 @@ class PerformsTag
     validates :play_hour
     validates :play_minutes
     validates :name
-  end
-
-  def save
-    tweet = Tweet.create(message: message)
-    performance = Performance.create( :title,
-      :explain,
-      :start_date,
-      :finish_date, 
-      :video, 
-      :time_table, 
-      :price, :place, 
-      :staff, :player, 
-      :staff, 
-      :writer, 
-      :directer, 
-      :audience, 
-      :rest, 
-      :other_notice, 
-      :play_hour, 
-      :play_minutes, 
-      :name)
-    tag = Tag.create(name: name)
-
-    PerformTag.create(performance_id: performance.id, tag_id: tag.id)
   end
 
 end
