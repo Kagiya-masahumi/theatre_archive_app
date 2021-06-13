@@ -57,8 +57,7 @@
                 <div class="media-content">
                   
                   <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
-                    <%# binding.pry %>
-                    <p>ここにもタグ</p>
+
                     <p>Tags:  <%= raw perform.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
                 
                 </div>

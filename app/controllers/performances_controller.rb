@@ -6,21 +6,13 @@ class PerformancesController < ApplicationController
   def index
     @performances = Performance.all.order("created_at DESC")
     @groups = Group.all
-    @tags = ActsAsTaggableOn::Tag.all
-    # タグの一覧表示
+
     if params[:tag]
       @performances = Performance.tagged_with(params[:tag])
-      # タグ検索時にそのタグづけしているものを表示
     else
-      @performance = Performance.all
+      @performances = Performance.all.order("created_at DESC")
     end
 
-
-    if params[:tag_name]
-      @performances = Performance.tagged_with("#{params[:tag_name]}").includes(:group).order("created_at DESC")
-    else
-      @performances = Performance.all.includes(:group).order("created_at DESC")
-    end
   end
 
 
