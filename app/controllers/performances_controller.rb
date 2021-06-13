@@ -73,7 +73,7 @@ class PerformancesController < ApplicationController
                                         :audience,
                                         :rest,
                                         :other_notice,
-                                        tag_list:[]
+                                        :tag_list
                                       ).merge(group_id: current_group.id)
   end
 

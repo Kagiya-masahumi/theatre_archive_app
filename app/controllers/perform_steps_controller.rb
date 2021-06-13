@@ -26,13 +26,7 @@ class PerformStepsController < ApplicationController
   def step2
     binding.pry
     @performance = Performance.new
-    @tags = ActsAsTaggableOn::Tag.all
 
-    if params[:tag_name]
-      @performances = Performance.tagged_with("#{params[:tag_name]}").includes(:group)
-    else
-      @performances = Performance.all.includes(:group)
-    end
   end
 
   def create
@@ -46,12 +40,12 @@ class PerformStepsController < ApplicationController
     @performance[:other_notice] = performance_params[:other_notice]
     @performance.tag_list = performance_params[:tag_list]
     @performance[:group_id] = performance_params[:group_id]
-    tag_list = params[:performance][:tag_list]
+    @tag_list = params[:performance][:tag_list]
 
     binding.pry
     if @performance.save
-      @performance.save_tags # save_tagsというインスタンスメソッドを使って保存している。
-      flash[:notice] = "公演の投稿が完了しました"[]
+      
+      flash[:notice] = "公演の投稿が完了しました"
       delete_session
       redirect_to root_path
     else
@@ -81,7 +75,7 @@ class PerformStepsController < ApplicationController
                                         :audience,
                                         :rest,
                                         :other_notice,
-                                        tag_list:[]
+                                        :tag_list
                                       ).merge(group_id: current_group.id)
   end
 
@@ -129,7 +123,8 @@ class PerformStepsController < ApplicationController
       audience: session[:audience],
       rest: session[:rest],
       other_notice: session[:other_notice],
-      group_id: session[:group_id]
+      group_id: session[:group_id],
+      tag_list: session[:tag_list]
     )
   end
 

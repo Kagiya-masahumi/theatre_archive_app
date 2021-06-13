@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
     
   put 'performances/:id/edit', to: 'performances#update'
+  get 'tags/:tag', to: 'performances#index', as: :tag
 
   root to: "performances#index"
 
