@@ -8,7 +8,7 @@ class PerformancesController < ApplicationController
     @groups = Group.all
 
     if params[:tag]
-      @performances = Performance.tagged_with(params[:tag])
+      @performances = Performance.tagged_with(params[:tag]).order("created_at DESC")
     else
       @performances = Performance.all.order("created_at DESC")
     end
