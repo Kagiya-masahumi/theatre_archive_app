@@ -6,6 +6,13 @@ class PerformancesController < ApplicationController
   def index
     @performances = Performance.all.order("created_at DESC")
     @groups = Group.all
+
+    if params[:tag]
+      @performances = Performance.tagged_with(params[:tag])
+    else
+      @performances = Performance.all.order("created_at DESC")
+    end
+
   end
 
 
@@ -39,7 +46,6 @@ class PerformancesController < ApplicationController
   
 
   private
-  #userとprofileのストロングパラメータ
   def performance_params
     params.require(:performance).permit(:title,
                                         :explain, 
@@ -58,7 +64,8 @@ class PerformancesController < ApplicationController
                                         :play_minutes,
                                         :audience,
                                         :rest,
-                                        :other_notice
+                                        :other_notice,
+                                        :tag_list
                                       ).merge(group_id: current_group.id)
   end
 

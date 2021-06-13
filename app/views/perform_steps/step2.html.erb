@@ -2,6 +2,7 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-6">
+
         <%= form_for @performance, url: step2_perform_steps_path, :multipart => true ,method: :post do |f| %>
           
 
@@ -17,7 +18,10 @@
             <%= f.file_field :video, accept: 'video/*' %>
           </div>
 
-          
+          <div class="field">
+            <%= f.label :tag_list, "タグ" %><br />
+            <%= f.text_field :tag_list ,placeholder:"カンマ（,）で区切って記述してください"%>
+          </div>
 
           <div class="field">
             <%= f.label :writer , "脚本" ,class: "label" %>

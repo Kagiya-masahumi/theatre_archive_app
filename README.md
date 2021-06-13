@@ -53,6 +53,7 @@
 - belongs_to :group
 
 
+
 ## comments テーブル
 
 | Column         | Type        | Options                        |

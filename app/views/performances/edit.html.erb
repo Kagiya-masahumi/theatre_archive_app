@@ -37,6 +37,13 @@
             <%= f.file_field :video, accept: 'video/*' %>
           </div>
 
+          <p>（,）がないと保存できないようバリデーションをかける</p>
+          <div class="field">
+            <%= f.label :tag_list, "タグ" %><br />
+            <%= f.text_field :tag_list,class: "input", placeholder:"カンマ（,）で区切って記述してください" %>
+          </div>
+
+
           <div class="field">
             <%= f.label :title, "公演タイトル", class: "label" %>
             <%= f.text_field :title , class: "input", id: 'title', autofocus: true, placeholder: '例）かもめ' %>

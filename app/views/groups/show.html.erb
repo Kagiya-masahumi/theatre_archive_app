@@ -1,21 +1,13 @@
 
-<section class="hero is-success">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        マイページ
-      </h1>
-    </div>
-  </div>
-</section>
 
 <section class="hero is-success">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-    
-      <% if @group.id == current_group.id %>
-        <%= "#{current_group.name}様のマイページ"%>
+      <% if group_signed_in? %>
+        <% if @group.id == current_group.id %>
+          <%= "マイページ"%>
+        <% end %>
       <% else %>
         <%= "#{@group.name}のページ" %>
       <% end %>
@@ -41,13 +33,15 @@
         </figure>
           <strong><%= @group.name %></strong>
         </td>
-        <% if @group.id == current_group.id %>
-          <td class="is-size-4">
-            <%= @group.email %>
-          </td>
-          <td>
-            <%=link_to "編集", edit_group_path(@group), class: "button is-primary"%>
-          </td>
+        <% if group_signed_in? %>
+          <% if @group.id == current_group.id %>
+            <td class="is-size-4">
+              <%= @group.email %>
+            </td>
+            <td>
+              <%=link_to "編集", edit_group_path(@group), class: "button is-primary"%>
+            </td>
+          <% end %>
         <% end %>
       </tr>
     </table>
@@ -55,6 +49,7 @@
       <tr>
         <td>
           <%= @group.profile %>
+          <p>ここに一覧が表示される</p>
         </td>
       </tr>
     </table>

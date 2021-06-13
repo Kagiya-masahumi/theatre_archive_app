@@ -19,6 +19,13 @@
 
 
 <p>劇団のロゴを出現させたい</p>
+<div id="tag_cloud">
+  <% tag_cloud Performance.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>,
+  <% end %>
+</div>
+
+
 <section class="section">
   <div class="container">
     <div class="columns is-multiline">
@@ -39,20 +46,24 @@
           </div>
 
                 </div>
+          <div class="title is-centered">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
                     <% link_to group_path(perform.group.id) do %>
-                      <% if perform.group.image.attached?%>
+                      <% if perform.group.image.attached? %>
+                      
                         <%= image_tag perform.group.image %>
                       <% end %>
                     <% end %>
                   </figure>
                 </div>
                 <div class="media-content">
-                  <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
+                  
                   <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
+                    <p>Tags:  <%= raw perform.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+                  <p>料金：<%= perform.price %>円</p>
                 </div>
               </div>
 
