@@ -31,22 +31,24 @@
                   </tr>
                 </table>
               </div>
-            </div>
           
-            <% if group_signed_in? %>
-              <div class="content">
-                <% if @performance.group.id == current_group.id %>
-                  <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
-                  <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
+                <% if group_signed_in? %>
+                  <div class="content">
+                    <% if @performance.group.id == current_group.id %>
+                      <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
+                      <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
-            <% end %>
-          </div>
-          
-          <div class= "favorite" id="performance-link-<%= @performance.id %>">
-          <%= render "performances/performance", perform: @performance %>
-          </div>
-          
+              <div class="card-bottom">
+                <div class= "favorite" id="performance-link-<%= @performance.id %>">
+                <%= render "performances/performance", perform: @performance %><span>ここに購入ボタンが来るといい</span>
+                
+                
+                </div>
+              </div>
+            </div>
 
         </div>
         <div class="card">
@@ -93,14 +95,13 @@
             </p>
             <div class="panel-block">
               <p class="control">
-                <%= simple_format(@performance.explain) %>
+                <%="あらすじ：#{@performance.explain }" %>
               </p>
             </div>
             
             <div class="panel-block">
               <p class="control">
-                <%= "キャスト：" %>
-                <%= simple_format(@performance.player) %>
+                <%= "キャスト：#{@performance.player}" %>
               </p>
 
             </div>
