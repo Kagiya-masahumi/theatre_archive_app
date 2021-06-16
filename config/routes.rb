@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  get 'cards/new'
   resources :performances, only:[:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create,:destroy]
   end
