@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cards, only: [:new, :create]
+
 
   
 

@@ -23,4 +23,6 @@ class User < ApplicationRecord
         has_many :favorites,foreign_key: "user_id"
         has_many :favorite_performances, through: :performances, source: :performance
 
+        has_one :card, dependent: :destroy
+
 end
