@@ -27,8 +27,6 @@ RSpec.describe Group, type: :model do
       end
 
     end
-
-
     context '団体登録できない時' do
 
       it '団体名が空では登録できないこと' do
@@ -112,7 +110,7 @@ RSpec.describe Group, type: :model do
         expect(@group.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it "劇団のロゴが未選択だと登録できない" do
+      it "劇団のロゴが未選択だと登録できないこと" do
         @group.image  = nil
         @group.valid?
         expect(@group.errors.full_messages).to include("Image can't be blank")

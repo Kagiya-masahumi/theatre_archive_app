@@ -80,6 +80,7 @@
                     <% link_to group_path(perform.group.id) do %>
                       <% if perform.group.image.attached?%>
                         <%= image_tag perform.group.image %>
+                        <%= %>
                       <% end %>
                     <% end %>
                   </figure>
