@@ -45,6 +45,10 @@ Rails.application.routes.draw do
   end
 
   resources :cards, only: [:new, :create]
+  resources :performances, only: :order do
+    post 'order' , on: :member
+  end
+  
 
 
   

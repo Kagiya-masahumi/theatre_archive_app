@@ -65,7 +65,10 @@
                     <p>Tags:  <%= raw perform.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
                   <p>料金：<%= perform.price %>円</p>
                 </div>
+                <p>この辺に購入ボタン</p>
+                <%= link_to '購入する', order_performance_path(perform.id), method: :post %>
               </div>
+              
 
               <div class="content">
                 <time><%= perform.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
