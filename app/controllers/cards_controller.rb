@@ -8,7 +8,6 @@ class CardsController < ApplicationController
       description: 'test', 
       card: params[:token_id] 
     )
-    # binding.pry
     card = Card.new(
       customer_id: customer.id,
       token_id: params[:token_id],

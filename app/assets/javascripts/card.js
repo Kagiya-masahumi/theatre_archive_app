@@ -1,5 +1,4 @@
 const pay = () => {
-  console.log("OK");
   Payjp.setPublicKey(document.querySelector('meta[name="payjp_public_key"]').content);
 
   const form = document.getElementById("card-form");
