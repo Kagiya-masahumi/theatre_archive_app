@@ -1,6 +1,6 @@
 class PerformancesController < ApplicationController
-  before_action :authenticate_group!,except: [:index,:show]
-  before_action :set_performance, only: [:show, :edit, :update]
+  before_action :authenticate_group!,except: [:index,:show, :order]
+  before_action :set_performance, only: [:show, :edit, :update, :order]
   
 
   def index
@@ -43,6 +43,26 @@ class PerformancesController < ApplicationController
     performance.destroy
     redirect_to performances_path
   end
+
+  def order
+    binding.pry
+    redirect_to new_card_path and return unless current_user.card.present?
+
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    customer_id = current_user.card.customer_id # ログインしているユーザーの顧客トークンを定義
+    Payjp::Charge.create(
+      amount: @performance.price,  # 商品の値段
+      customer: customer_id, # 顧客のトークン
+      currency: 'jpy'  # 通貨の種類（日本円）
+    )
+
+    PerformanceOrder.create(performance_id: params[:id])  # 商品のid情報を「performance_id」として保存する
+
+    redirect_to root_path
+
+  end
+
+
   
 
   private
