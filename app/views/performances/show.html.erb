@@ -29,12 +29,14 @@
                       <div class='video'>
                         <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
                       </div>
-                      <% if @performance.performance_order.blank? %>
-                        <div class='selling'>
-                          <span>購入してください</span>
-                        </div>
+                      <% if user_signed_in? || group_signed_in? %>
+                        <% if @performance.performance_order.blank? %>
+                          <div class='selling'>
+                            <span>購入してください</span>
+                          </div>
+                        <% end %>
                       <% end %>
-                      
+                        
                     </td>
                   </tr>
                 </table>
@@ -49,12 +51,15 @@
                   </div>
                 <% end %>
               </div>
-              <div class="card-bottom">
+              <div class="card-bottom is-right" >
                 <div class= "favorite" id="performance-link-<%= @performance.id %>">
                 <%= render "performances/performance", perform: @performance %>
-                
+                <% if user_signed_in? %>
+                  <%= link_to '購入する', order_performance_path(@performance.id), method: :post %>
+                <% end %>
                 
                 </div>
+                
               </div>
             </div>
 

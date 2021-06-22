@@ -37,6 +37,11 @@
               <%= link_to performance_path(perform.id) do %>
                 <% if perform.image.attached?%>
                   <%= image_tag perform.image %>
+                  <% if perform.performance_order.blank? %>
+                        <div class='perform'>
+                          <span>未購入</span>
+                        </div>
+                      <% end %>
                 <% end %>
               <% end %>
             </figure>
@@ -65,7 +70,9 @@
                     <p>Tags:  <%= raw perform.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
                   <p>料金：<%= perform.price %>円</p>
                 </div>
-                <%= link_to '購入する', order_performance_path(perform.id), method: :post %>
+                <% if user_signed_in? %>
+                  <%= link_to '購入する', order_performance_path(perform.id), method: :post %>
+                <% end %>
               </div>
               
 
