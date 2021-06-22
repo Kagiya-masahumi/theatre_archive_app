@@ -26,7 +26,15 @@
                   </tr>
                   <tr>
                     <td>
-                      <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
+                      <div class='video'>
+                        <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
+                      </div>
+                      <% if @performance.performance_order.blank? %>
+                        <div class='selling'>
+                          <span>購入してください</span>
+                        </div>
+                      <% end %>
+                      
                     </td>
                   </tr>
                 </table>
@@ -135,12 +143,3 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
