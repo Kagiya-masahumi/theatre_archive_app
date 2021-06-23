@@ -110,6 +110,9 @@
                 <div class="media-content">
                   <div class="title">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
                   <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
+                  <% if user_signed_in? %>
+                    <%= link_to '購入する', order_performance_path(perform.id), method: :post %>
+                  <% end %>
                 </div>
               </div>
 
