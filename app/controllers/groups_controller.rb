@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     end
   
     def show
+      @performances = current_group.performances
     end
   
     def edit
@@ -17,7 +18,6 @@ class GroupsController < ApplicationController
     end
   
     def update
-      binding.pry
       if  @group.update(group_params)
         bypass_sign_in(@group)
         redirect_to root_path, notice: "更新に成功しました。"

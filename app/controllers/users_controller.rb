@@ -10,6 +10,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: current_user.id).pluck(:performance_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
     @favorite_list = Performance.find(favorites)     # postsテーブルから、お気に入り登録済みのレコードを取得
+
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    card = Card.find_by(user_id: current_user.id)
+    redirect_to new_card_path and return unless card.present?
+    customer = Payjp::Customer.retrieve(card.customer_id) # 先程のカード情報を元に、顧客情報を取得
+    @card = customer.cards.first
   end
 
   def edit

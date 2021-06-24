@@ -1,0 +1,51 @@
+
+
+
+.selling>span {
+  font-size: 45px;
+  font: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family:sans-serif;
+  font-weight:bold;
+  letter-spacing:5px;
+  color:#fff;
+}
+
+.selling::before{
+  content: '';
+  position: absolute;
+  top: 110px;
+  right: 20px;
+  bottom: 80px;
+  left: 20px;
+  background-color: rgba(0,0,0,0.5);
+  }
+
+
+.perform>span {
+  font-size: 20px;
+  font: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family:sans-serif;
+  font-weight:bold;
+  letter-spacing:5px;
+  color:#fff;
+
+}
+
+.perform::before{
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0.5);
+
+}

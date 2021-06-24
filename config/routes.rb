@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  get 'cards/new'
   resources :performances, only:[:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create,:destroy]
   end
@@ -42,6 +43,12 @@ Rails.application.routes.draw do
       get 'done'          
     end
   end
+
+  resources :cards, only: [:new, :create]
+  resources :performances, only: :order do
+    post 'order' , on: :member
+  end
+  
 
 
   

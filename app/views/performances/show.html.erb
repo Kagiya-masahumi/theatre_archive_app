@@ -19,34 +19,56 @@
               <div class="media-content">
                 <table class="table is-narrow">
                   <tr>
-                    <th>公演名※もっと大きく</th>
+                    <th>『<%= @performance.title %>』</th>
                   </tr>
                   <tr>
                     <td><%= simple_format @performance.title %>※ここも</td>
                   </tr>
                   <tr>
                     <td>
-                      <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
+                      <div class='video'>
+                        <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
+                      </div>
+                      <% if user_signed_in?  %>
+                        <% if @performance.performance_order.blank? %>
+                          <div class='selling'>
+                            <span>購入してください</span>
+                          </div>
+                        <% end %>
+                      <% elsif group_signed_in? && @performance.group.id != current_group.id %>
+                        <% if @performance.performance_order.blank? %>
+                          <div class='selling'>
+                            <span>購入したユーザーのみ閲覧可</span>
+                          </div>
+                        <% end %>
+                      <% end %>
+                        
                     </td>
                   </tr>
                 </table>
               </div>
-            </div>
           
-            <% if group_signed_in? %>
-              <div class="content">
-                <% if @performance.group.id == current_group.id %>
-                  <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
-                  <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
+                <% if group_signed_in? %>
+                  <div class="content">
+                    <% if @performance.group.id == current_group.id %>
+                      <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
+                      <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
-            <% end %>
-          </div>
-          
-          <div class= "favorite" id="performance-link-<%= @performance.id %>">
-          <%= render "performances/performance", perform: @performance %>
-          </div>
-          
+              <div class="card-bottom is-right" >
+                <div class= "favorite" id="performance-link-<%= @performance.id %>">
+                <%= render "performances/performance", perform: @performance %>
+                
+                
+                </div>
+                <% if user_signed_in? %>
+                  <%= link_to '購入する', order_performance_path(@performance.id), method: :post %>
+                <% end %>
+                
+              </div>
+            </div>
 
         </div>
         <div class="card">
@@ -93,14 +115,13 @@
             </p>
             <div class="panel-block">
               <p class="control">
-                <%= simple_format(@performance.explain) %>
+                <%="あらすじ：#{@performance.explain }" %>
               </p>
             </div>
             
             <div class="panel-block">
               <p class="control">
-                <%= "キャスト：" %>
-                <%= simple_format(@performance.player) %>
+                <%= "キャスト：#{@performance.player}" %>
               </p>
 
             </div>
@@ -134,12 +155,3 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
