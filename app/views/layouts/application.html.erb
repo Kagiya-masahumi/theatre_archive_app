@@ -41,6 +41,7 @@
         <div class="navbar-item">
           <div class="field is-grouped">
             <p class="control">
+              <%= link_to  "ようこそ、#{current_user.nickname}様", "#", class: "user-nickname is-light" %> 
               <%= link_to "ログアウト", destroy_user_session_path ,method: :delete,class: "button is-warning is-light"%>
               <%= link_to "マイページ", "/users/#{current_user.id}", class: "button is-warning is-light" %>
             </p>
@@ -60,7 +61,7 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-              
+                <%= link_to  "ようこそ、#{current_group.name}様", "#", class: "group-name is-light" %> 
                 <%= link_to "ログアウト", destroy_group_session_path ,method: :delete,class: "button is-warning is-light" %>
                 <%= link_to "マイページ", "/groups/#{current_group.id}", class: "button is-warning is-light" %>
               </p>
