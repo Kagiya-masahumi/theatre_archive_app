@@ -7,6 +7,17 @@
 
 }
 
+.welcome{
+  color: #030303;
+}
+
+.navbar-item{
+  .user-name,.group-name{
+    text-decoration: none;
+    color: #030303 ;
+  }
+}
+
 .tag_cloud{
 
   justify-content: center;
@@ -60,4 +71,9 @@
   left: 0px;
   background-color: rgba(0,0,0,0.5);
 
+}
+
+.user-name,.group-name{
+  text-decoration: none;
+  color: #030303 ;
 }
