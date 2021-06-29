@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: theatre_archive_app_production
-  username: theatre_archive_app
-  password: <%= ENV['THEATRE_ARCHIVE_APP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
