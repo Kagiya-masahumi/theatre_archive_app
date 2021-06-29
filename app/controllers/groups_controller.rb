@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     end
   
     def show
+      
       @performances = current_group.performances
     end
   
