@@ -1,5 +1,28 @@
+.tag_container{
+ 
+  width: 80%;
+  justify-content: center;
+  border: 3px solid black;
+  margin: 0px 100px 0px;
 
+}
 
+.welcome{
+  color: #030303;
+}
+
+.navbar-item{
+  .user-name,.group-name{
+    text-decoration: none;
+    color: #030303 ;
+  }
+}
+
+.tag_cloud{
+
+  justify-content: center;
+  margin: 0px 50px 0px;
+}
 
 .selling>span {
   font-size: 45px;
@@ -48,4 +71,9 @@
   left: 0px;
   background-color: rgba(0,0,0,0.5);
 
+}
+
+.user-name,.group-name{
+  text-decoration: none;
+  color: #030303 ;
 }

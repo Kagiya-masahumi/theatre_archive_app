@@ -1,17 +1,19 @@
+<%= render partial: "shared/header" ,local:{performance: @performance}%>
 
-
-<% if group_signed_in? %>
-  <%= "ようこそ、#{current_group.name}様" %>
-<% elsif user_signed_in? %>
-  <strong><%= "ようこそ、#{current_user.nickname}様" %></strong>
-<% end %>
-
-  
 <section class="hero is-success">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        公演一覧
+        <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-3" style="font-family: impact;">公演一覧</h1>
+      <% end %>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
       </h1>
     </div>
   </div>
@@ -19,10 +21,12 @@
 
 
 <p>劇団のロゴを出現させたい</p>
-<div id="tag_cloud">
-  <% tag_cloud Performance.tag_counts, %w{s m l} do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>,
-  <% end %>
+<div class="tag_container">
+  <div id="tag_cloud" class="tag_cloud">
+    <% tag_cloud Performance.tag_counts, %w{s m l} do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>,
+    <% end %>
+  </div>
 </div>
 
 
@@ -88,5 +92,7 @@
     </div>
   </div>
 </section>
+
+<%= render "shared/footer" %>
 
 
