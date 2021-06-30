@@ -29,17 +29,21 @@
           
           
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :title, "公演タイトル", class: "label" %>
-            <%= f.text_field :title , class: "input", id: 'title', autofocus: true, placeholder: '例）かもめ' %>
+            <%= f.text_field :title , class: "input", id: 'title', autofocus: true, placeholder: '例）『山月記』' %>
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :explain , "公演内容" ,class: "label" %>
-            <%= f.text_area :explain , class: "textarea",id: 'explain',autofocus: true, placeholder: '例）かもめ'%>
+            <%= f.text_area :explain , class: "textarea",id: 'explain',autofocus: true, placeholder: '例）唐代の中国で、李徴は科挙（かきょ。役人になるための難関試験）に合格し、晴れて役人になりました。ところがプライドの高い李徴は、周囲となじめずに役人を辞めてしまいます。
+
+その後、李徴は詩人として生きることを決意しますが、なかなかうまくいきません。
+
+結局詩人をやめて下級役人として再出発した李徴は、出世したかつての知り合いの下で働くことに耐えきれず、発狂して走り出します。そして、李徴はいつの間にか虎になってしまいました。'%>
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :start_date , "公演開始(予定)日"  %>
               <div class='input is-grouped'>
                 <%= raw sprintf(
@@ -57,7 +61,7 @@
           </div>
       
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :finish_date , "公演終了(予定)日"  %>
               <div class='input is-grouped'>
                 <%= raw sprintf(
@@ -74,38 +78,43 @@
               </div>
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :time_table , "タイムテーブル" ,class: "label" %>
-            <%= f.text_area :time_table , class: "textarea",autofocus: true,placeholder:'例）' %>
+            <%= f.text_area :time_table , class: "textarea",autofocus: true,placeholder:'例）・2021/05/24
+          18:00〜
+        ・2021/05/25
+          13:00〜
+          18:00〜
+' %>
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :place , "劇場名" ,class: "label" %>
             <%= f.text_field :place ,class: "input" %>
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <%= f.label :play_hour,"上演予定時間:約", class: 'label'%>
             <%= f.text_field :play_hour, class: 'text', size: "10",id: 'play_hour',autofocus: true%>時間
             <%= f.text_field :play_minutes, class: 'text',size: "10", id: 'play_minutes',autofocus: true%>分
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <p>休憩時間</p>
             <label><%= f.radio_button :rest, "あり" %> あり </label>
             <label><%= f.radio_button :rest, "なし" %> なし</label>
           </div>
 
-          <div class="field">
+          <div class="field-form">
             <p>観客</p>
             <label><%= f.radio_button :audience, "観客あり" %> 観客の入場あり </label>
             <label><%= f.radio_button :audience, "観客なし" %> 観客の入場なし</label>
           </div>
 
           
-          <div class="field">
+          <div class="field-form">
             <%= f.label :price , "金額" ,class: "label" %>
-            <%= f.text_field :price, class: 'text', size: "10",id: 'price',autofocus: true,placeholder:"例)2000"%>円
+            <%= f.text_field :price, class: '', size: "10",id: 'price',autofocus: true,placeholder:"例)2000" %><span>円</span>
           </div>
 
 
