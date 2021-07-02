@@ -24,7 +24,7 @@ class PerformStepsController < ApplicationController
   end
 
   def step2
-    binding.pry
+
     @performance = Performance.new
 
   end
@@ -42,7 +42,7 @@ class PerformStepsController < ApplicationController
     @performance[:group_id] = performance_params[:group_id]
     @tag_list = params[:performance][:tag_list]
 
-    binding.pry
+
     if @performance.save
       
       flash[:notice] = "公演の投稿が完了しました"

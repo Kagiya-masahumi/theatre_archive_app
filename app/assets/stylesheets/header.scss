@@ -10,6 +10,51 @@
   background: url('globe-theatre.png');
   background-size: cover;
   background-position: 50% 10%; 
+  position: relative;
+}
+
+
+.bg-mask{
+  width: 100vw;
+  height: 800px;
+  background: rgba(255,255,255,0.5);
+  z-index: 0;
+  content: “”;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header-message{
+  position:absolute;
+  text-align: center;
+  top:43%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:97%;
+  font-family: cursive,;
+  font-size: 70px;
+  z-index: 1;
+  color: brown;
+  padding: 0%, 50px, 0;
+  
+}
+
+.message-transfor{
+  position:absolute;
+  text-align: center;
+  top:83%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+  font-family: cursive,;
+  font-size: 30px;
+  z-index: 1;
+  font-family:serif ;
+  font-weight:bold;
+  color: rgb(59, 10, 18);
+  padding: 0%, 500px, 0;
 }
 
 .header-text{

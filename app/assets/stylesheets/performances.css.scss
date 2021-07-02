@@ -8,3 +8,36 @@
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
 }
+
+
+
+
+.wrap-text{
+  display: block;
+
+}
+
+.wrap-comment{
+  display: flex;
+ 
+}
+
+.is-block{
+  display: flex;
+}
+
+.media{
+  position: relative;
+}
+
+.media-content{
+size: 80px;
+}
+
+
+
+.content-group{
+  display: block;
+justify-content: center;
+align-items: center;
+}

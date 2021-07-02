@@ -12,146 +12,171 @@
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
-      <div class="column is-7">
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <table class="table is-narrow">
-                  <tr>
-                    <th>『<%= @performance.title %>』</th>
-                  </tr>
-                  <tr>
-                    <td><%= simple_format @performance.title %>※ここも</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class='video'>
-                        <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
-                      </div>
-                      <% if user_signed_in?  %>
-                        <% if @performance.performance_order.blank? %>
-                          <div class='selling'>
-                            <span>購入してください</span>
+      <div class="wrap">
+        <div class="wrap-top">
+          <div class="column-show is-7">
+            <div class="card">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <table class="table is-narrow">
+                      <tr>
+                        <th>『<%= @performance.title %>』</th>
+                      </tr>
+                      <tr>
+                        <td><%= simple_format @performance.title %>※ここも</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class='video'>
+                            <%= video_tag(@performance.video.to_s, :controls => true, size: "500x300")  %> 
                           </div>
-                        <% end %>
-                      <% elsif group_signed_in? && @performance.group.id != current_group.id %>
-                        <% if @performance.performance_order.blank? %>
-                          <div class='selling'>
-                            <span>購入したユーザーのみ閲覧可</span>
+                          <% if user_signed_in?  %>
+                            <% if @performance.performance_order.blank? %>
+                              <div class='selling'>
+                                <span>購入してください</span>
+                              </div>
+                            <% end %>
+                          <% elsif group_signed_in? && @performance.group.id != current_group.id %>
+                            <% if @performance.performance_order.blank? %>
+                              <div class='selling'>
+                                <span>購入したユーザーのみ閲覧可</span>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="card-bottom is-right" >
+                            <div class= "favorite" id="performance-link-<%= @performance.id %>">
+                              <%= render "performances/performance", perform: @performance %>
+                            </div>
+                            <% if user_signed_in? %>
+                              <%= link_to '購入する', order_performance_path(@performance.id), method: :post %>
+                            <% elsif group_signed_in? %>
+                              <% if @performance.group.id == current_group.id %>
+                                <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
+                                <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
+                              <% end %>
+                              </div>
+                            <% end %>
                           </div>
-                        <% end %>
-                      <% end %>
-                        
-                    </td>
-                  </tr>
-                </table>
-              </div>
-          
-                <% if group_signed_in? %>
-                  <div class="content">
-                    <% if @performance.group.id == current_group.id %>
-                      <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
-                      <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
-                    <% end %>
+                        </td>
+
+                      
+                      </tr>
+                    </table>
+                    
                   </div>
-                <% end %>
-              </div>
-              <div class="card-bottom is-right" >
-                <div class= "favorite" id="performance-link-<%= @performance.id %>">
-                <%= render "performances/performance", perform: @performance %>
-                
-                
+                  <div class="column is-4">
+                      <article class="panel is-link">
+                        <p class="panel-heading">
+                          <% if @performance.image.attached?%>
+                            <%= image_tag  @performance.image %>
+                          <% end %>
+                          <% if @performance.group.image.attached?%>
+                            By   <%= image_tag @performance.group.image %>
+                          <% end %>
+                        </p>
+                      </article>
+                      
+                    </div>  
                 </div>
-                <% if user_signed_in? %>
-                  <%= link_to '購入する', order_performance_path(@performance.id), method: :post %>
-                <% end %>
-                
+              </div>
+
+
+              <div class="media">
+                <div class="card-content">
+                  
+                </div>
               </div>
             </div>
+            
+          </div>
 
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <table class="table is-narrow">
-                <% if user_signed_in? %>
-                  <%= form_with(model: [@performance, @comment], local: true) do |form| %>
-                    <%= form.text_area :text, placeholder: "コメントする", class: "textarea",rows: "2" %>
-                    <%= form.submit "SEND" %>
-                  <% end %>
-                <% elsif group_signed_in? %>
-                  <strong><p>※※※ コメントの投稿は個人ユーザーのみ可能です ※※※</p></strong>_
-                <% else %>
-                  <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+          <div class="wrap-text">
+            <div class="card">
+              <div class="column-show">
+                <div class="panel-block">
+                  <p class="control">
+                    <%="あらすじ：#{@performance.explain }" %>
+                  </p>
+                </div>
+                
+                <div class="panel-block">
+                  <p class="control">
+                    <%= "キャスト：#{@performance.player}" %>
+                  </p>
+
+                </div>
+                <div class="panel-block">
+                  <p class="control">
+                    <%= "スタッフ：" %>
+                    <%= simple_format(@performance.staff)%>
+                  </p>
+                </div>
+                <div class="panel-block">
+                  <p class="control">
+                    <%= "公開日：#{@performance.start_date} 〜 #{@performance.finish_date}" %>
+
+                  </p>
+                </div>
+
+
+                <%= link_to group_path(@performance.group), class: "panel-block" do %>
+                  <span class="panel-icon">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  </span>
+                  <%= @performance.group.name %> さんのページへ
                 <% end %>
-                <div class="comments"><br>
-                  <h4>＜コメント一覧＞</h4>
-                  <% @comments.each do |comment| %>
-                    <p>
-                      <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-                      <%= comment.text %>
-                      
-                    </p>
-                  <% end %>
-                </table>
+
               </div>
+
             </div>
           </div>
         </div>
+
+          
+        </div>
+
+
+        
+
+        
+        
+      
         
       </div>
-
-      <div class="column is-4">
-          <article class="panel is-link">
-            <p class="panel-heading">
-              <% if @performance.image.attached?%>
-                <%= image_tag  @performance.image %>
-              <% end %>
-              <% if @performance.group.image.attached?%>
-                By   <%= image_tag @performance.group.image %>
-              <% end %>
-            </p>
-            <div class="panel-block">
-              <p class="control">
-                <%="あらすじ：#{@performance.explain }" %>
-              </p>
-            </div>
+      <div class="card">
+          <div class="card-content">
+            <div class="media">
             
-            <div class="panel-block">
-              <p class="control">
-                <%= "キャスト：#{@performance.player}" %>
-              </p>
-
+              <table class="table is-narrow">
+              <% if user_signed_in? %>
+                <%= form_with(model: [@performance, @comment], local: true) do |form| %>
+                  <%= form.text_area :text, placeholder: "コメントする", class: "textarea",rows: "2" %>
+                  <%= form.submit "SEND" %>
+                <% end %>
+              <% elsif group_signed_in? %>
+                <strong><p>※※※ コメントの投稿は個人ユーザーのみ可能です ※※※</p></strong>_
+              <% else %>
+                <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+              <% end %>
+              <div class="comments"><br>
+                <h4>＜コメント一覧＞</h4>
+                <% @comments.each do |comment| %>
+                  <p>
+                    <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+                    <%= comment.text %>
+                    
+                  </p>
+                <% end %>
+              </table>
+              
             </div>
-            <div class="panel-block">
-              <p class="control">
-                <%= "スタッフ：" %>
-                <%= simple_format(@performance.staff)%>
-              </p>
-            </div>
-            <div class="panel-block">
-              <p class="control">
-                <%= "公開日：#{@performance.start_date} 〜 #{@performance.finish_date}" %>
- 
-              </p>
-            </div>
-
-
-            <%= link_to group_path(@performance.group), class: "panel-block" do %>
-              <span class="panel-icon">
-                <i class="fas fa-user" aria-hidden="true"></i>
-              </span>
-              <%= @performance.group.name %> さんのページへ
-            <% end %>
-          </article>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-    
     </div>
   </div>
 </section>
