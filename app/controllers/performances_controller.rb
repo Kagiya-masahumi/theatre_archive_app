@@ -45,9 +45,7 @@ class PerformancesController < ApplicationController
   end
 
   def order
-    binding.pry
     redirect_to new_card_path and return unless current_user.card.present?
-
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     customer_id = current_user.card.customer_id # ログインしているユーザーの顧客トークンを定義
     Payjp::Charge.create(

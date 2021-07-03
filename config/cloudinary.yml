@@ -1,19 +1,18 @@
----
 development:
-  cloud_name: dnwdiewqs
-  api_key: '846931796985656'
-  api_secret: 25k0HfXlKgh-4PgitJYgkr5uerk
+  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
+  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
   enhance_image_tag: true
-  static_file_support: false
+  static_image_support: false
 production:
-  cloud_name: dnwdiewqs
-  api_key: '846931796985656'
-  api_secret: 25k0HfXlKgh-4PgitJYgkr5uerk
+  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
+  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
   enhance_image_tag: true
-  static_file_support: true
+  static_image_support: true
 test:
-  cloud_name: dnwdiewqs
-  api_key: '846931796985656'
-  api_secret: 25k0HfXlKgh-4PgitJYgkr5uerk
+  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
+  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
+  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
   enhance_image_tag: true
-  static_file_support: false
+  static_image_support: false

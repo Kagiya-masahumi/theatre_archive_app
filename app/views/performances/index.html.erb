@@ -42,6 +42,7 @@
                 <% if perform.image.attached?%>
                   <%= image_tag perform.image %>
                   <% if user_signed_in? %>
+
                     <% if perform.performance_order.blank? %>
                       <div class='perform'>
                         <span>未購入</span>

@@ -140,23 +140,15 @@
           
         </div>
 
-
-        
-
-        
-        
-      
-        
       </div>
       <div class="card">
           <div class="card-content">
-            <div class="media">
             
-              <table class="table is-narrow">
+             
               <% if user_signed_in? %>
                 <%= form_with(model: [@performance, @comment], local: true) do |form| %>
                   <%= form.text_area :text, placeholder: "コメントする", class: "textarea",rows: "2" %>
-                  <%= form.submit "SEND" %>
+                  <p><%= form.submit "SEND" %></p>
                 <% end %>
               <% elsif group_signed_in? %>
                 <strong><p>※※※ コメントの投稿は個人ユーザーのみ可能です ※※※</p></strong>_
@@ -164,6 +156,7 @@
                 <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
               <% end %>
               <div class="comments"><br>
+              
                 <h4>＜コメント一覧＞</h4>
                 <% @comments.each do |comment| %>
                   <p>
@@ -174,8 +167,8 @@
                 <% end %>
               </table>
               
-            </div>
-          </div>
+        
+          
         </div>
     </div>
   </div>
