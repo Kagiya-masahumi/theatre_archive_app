@@ -72,4 +72,5 @@ gem 'acts-as-taggable-on', '~> 7.0'
 gem 'payjp'
 gem 'cloudinary'
 gem 'fog'
-
+gem 'devise-i18n'
+gem 'devise-i18n-views'

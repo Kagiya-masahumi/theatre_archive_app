@@ -2,7 +2,9 @@ class Performance < ApplicationRecord
   def thumbnail input
     return self.images[input].variant(resize: '300x300!').processed
   end
-  mount_uploader :video, VideoUploader
+  mount_uploader :video, CloudinaryImageUploader
+
+
   acts_as_taggable
   
 
