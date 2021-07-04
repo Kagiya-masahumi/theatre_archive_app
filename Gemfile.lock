@@ -63,6 +63,7 @@ GEM
       activejob (= 6.0.4)
       activerecord (= 6.0.4)
       marcel (~> 1.0.0)
+    activestorage-cloudinary-service (0.2.3)
     activesupport (6.0.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -531,6 +532,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  activestorage-cloudinary-service
   acts-as-taggable-on (~> 7.0)
   bootsnap (>= 1.4.2)
   bullet
