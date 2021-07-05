@@ -77,7 +77,7 @@ class PerformancesController < ApplicationController
                                         :staff, 
                                         :place,
                                         :writer,
-                                        :directer,
+                                        :director,
                                         :play_hour,
                                         :play_minutes,
                                         :audience,

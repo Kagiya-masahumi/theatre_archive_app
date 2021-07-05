@@ -98,28 +98,98 @@
           <div class="wrap-text">
             <div class="card">
               <div class="column-show">
-                <div class="panel-block">
+                <div class="panel-block-show">
                   <p class="control">
-                    <%="あらすじ：#{@performance.explain }" %>
+                    <%="【あらすじ】"%>
+                    <p><%= simple_format("#{@performance.explain }") %></p>
+                  </p>
+                </div>
+
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="【作】"%>
+                    <p><%= simple_format("#{@performance.writer }") %></p>
+                  </p>
+                  </p>
+                </div>
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="【演出】"%>
+                    <p><%= simple_format("#{@performance.director }") %></p>
+                  </p>
                   </p>
                 </div>
                 
-                <div class="panel-block">
+                <div class="panel-block-show">
                   <p class="control">
-                    <%= "キャスト：#{@performance.player}" %>
-                  </p>
-
-                </div>
-                <div class="panel-block">
-                  <p class="control">
-                    <%= "スタッフ：" %>
-                    <%= simple_format(@performance.staff)%>
+                    <%= "【キャスト】"%>
+                    <p><%= simple_format("#{@performance.player }") %></p>
                   </p>
                 </div>
-                <div class="panel-block">
-                  <p class="control">
-                    <%= "公開日：#{@performance.start_date} 〜 #{@performance.finish_date}" %>
 
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="【スタッフ】"%>
+                    <p><%= simple_format("#{@performance.staff }") %></p>
+                  </p>
+                </div>
+                <div class="panel-blockshow">
+                  <p class="control">
+                    <%= "【公開日】：#{@performance.start_date} 〜 #{@performance.finish_date}" %>
+                  </p>
+                </div>
+
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%= "【タイムテーブル】"%>
+                    <p><%= simple_format("#{@performance.time_table }") %></p>
+                  </p>
+                </div>
+                
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="【公演時間】：約#{@performance.play_hour}時間#{@performance.play_minutes}分" %>
+                  </p>
+                </div>
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="劇場：#{@performance.place }" %>
+                  </p>
+                </div>
+
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="金額：#{@performance.price }" %>
+                  </p>
+                </div>
+
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="【途中休憩】"%>
+                    <% if @performance.rest == 0 %>
+
+                        <%= "途中休憩有り" %>
+                    <% else %>
+                        <%= "途中休憩なし" %>
+                    <% end %>
+                  </p>
+                </div>
+
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%="【観客の有無】"%>
+                    <% if @performance.audience == 0 %>
+                        <%= "観客の入場有り" %>
+                    <% else %>
+                        <%= "観客の入場なし" %>
+                    <% end %>
+                  </p>
+                </div>
+
+                <div class="panel-block-show">
+                  <p class="control">
+                    <%= "【注意事項等】"%>
+                    <p><%= simple_format("#{@performance.other_notice }") %></p>
                   </p>
                 </div>
 

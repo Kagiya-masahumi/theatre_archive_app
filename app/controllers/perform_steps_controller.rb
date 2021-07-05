@@ -36,21 +36,28 @@ class PerformStepsController < ApplicationController
     @performance[:player] = performance_params[:player]
     @performance[:staff] = performance_params[:staff]
     @performance[:writer] = performance_params[:writer]
-    @performance[:directer] = performance_params[:directer]
+    @performance[:director] = performance_params[:director]
     @performance[:other_notice] = performance_params[:other_notice]
     @performance.tag_list = performance_params[:tag_list]
     @performance[:group_id] = performance_params[:group_id]
     @tag_list = params[:performance][:tag_list]
 
 
-    if @performance.save
-      
-      flash[:notice] = "公演の投稿が完了しました"
-      delete_session
-      redirect_to root_path
-    else
-      @tags = ActsAsTaggableOn::Tag.all
-      render :step2
+    begin
+      if @performance.save
+      # 例外が発生する可能性のあるコード
+
+        flash[:notice] = "公演の投稿が完了しました"
+        delete_session
+        redirect_to root_path
+      else
+        @tags = ActsAsTaggableOn::Tag.all
+        render :step2
+      end
+    rescue => e
+      # 例外発生時
+      logger.fatal "[FATAL] なになに例外が発生しました"
+      logger.fatal e.backtrace.join("\n")
     end  
   end
 
@@ -69,7 +76,7 @@ class PerformStepsController < ApplicationController
                                         :staff, 
                                         :place,
                                         :writer,
-                                        :directer,
+                                        :director,
                                         :play_hour,
                                         :play_minutes,
                                         :audience,
@@ -93,7 +100,7 @@ class PerformStepsController < ApplicationController
       place: performance_params[:place],
       staff: performance_params[:staff],
       writer: performance_params[:writer],
-      directer: performance_params[:directer],
+      director: performance_params[:director],
       play_hour: performance_params[:play_hour],
       play_minutes: performance_params[:play_minutes],
       audience: performance_params[:audience],
@@ -116,7 +123,7 @@ class PerformStepsController < ApplicationController
       player: session[:player],
       staff: session[:staff],
       writer: session[:writer],
-      directer: session[:directer],
+      director: session[:director],
       place: session[:place],
       play_hour: session[:play_hour],
       play_minutes: session[:play_minutes],
@@ -137,8 +144,8 @@ class PerformStepsController < ApplicationController
     errors.details.delete(:staff)
     errors.messages.delete(:writer)  
     errors.details.delete(:writer)
-    errors.messages.delete(:directer)  
-    errors.details.delete(:directer)
+    errors.messages.delete(:director)  
+    errors.details.delete(:director)
     errors.messages.delete(:image)  
     errors.details.delete(:image)
     
@@ -158,7 +165,7 @@ class PerformStepsController < ApplicationController
     session[:player] = performance_params[:player]
     session[:staff] = performance_params[:staff]
     session[:writer] = performance_params[:writer]
-    session[:directer] = performance_params[:directer]
+    session[:director] = performance_params[:director]
     session[:place] = performance_params[:place]
     session[:play_hour] = performance_params[:play_hour]
     session[:play_minutes] = performance_params[:play_minutes]
@@ -179,7 +186,7 @@ class PerformStepsController < ApplicationController
     session.delete(:player)
     session.delete(:staff)
     session.delete(:writer)
-    session.delete(:directer)
+    session.delete(:director)
     session.delete(:place)
     session.delete(:play_hour)
     session.delete(:play_minutes)

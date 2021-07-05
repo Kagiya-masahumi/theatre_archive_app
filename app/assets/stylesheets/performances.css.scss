@@ -11,7 +11,6 @@
 
 
 
-
 .wrap-text{
   display: block;
 
@@ -40,4 +39,12 @@ size: 80px;
   display: block;
 justify-content: center;
 align-items: center;
+}
+
+.panel-block-show {
+  align-items: center;
+  color: #363636;
+  display: initial;
+  justify-content: flex-start;
+  padding: 0.5em 0.75em;
 }

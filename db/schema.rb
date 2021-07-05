@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 2021_06_21_105603) do
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "performance_id"
+    t.integer "user_id", null: false
+    t.integer "performance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_105603) do
     t.text "staff", null: false
     t.text "player", null: false
     t.string "writer", null: false
-    t.string "directer", null: false
+    t.string "director", null: false
     t.integer "audience", null: false
     t.integer "rest", null: false
     t.text "other_notice"

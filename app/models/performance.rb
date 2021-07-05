@@ -21,7 +21,7 @@ class Performance < ApplicationRecord
     validates :writer
     validates :audience
     validates :place
-    validates :audience
+    validates :director
     validates :rest
     validates :play_hour
     validates :play_minutes

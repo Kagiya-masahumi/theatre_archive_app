@@ -14,7 +14,7 @@ FactoryBot.define do
     player{}
     staff{}
     writer{}
-    directer{}
+    director{}
     audience{}
     rest{}
     other_notice{}

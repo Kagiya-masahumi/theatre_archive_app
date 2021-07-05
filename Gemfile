@@ -65,7 +65,7 @@ gem 'image_processing', '~> 1.2'
 gem "bulma-rails", "~> 0.9.1"
 gem 'carrierwave'
 gem 'active_hash'
-gem 'fog-aws'
+
 gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on', '~> 7.0'
@@ -75,3 +75,4 @@ gem 'fog'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'activestorage-cloudinary-service'
+gem 'figaro', '~> 1.1', '>= 1.1.1'

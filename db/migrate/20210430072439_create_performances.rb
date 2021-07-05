@@ -13,7 +13,7 @@ class CreatePerformances < ActiveRecord::Migration[6.0]
       t.text :staff, null:false
       t.text :player, null:false
       t.string :writer, null:false
-      t.string :directer, null: false
+      t.string :director, null: false
       t.integer :audience, null: false
       t.integer :rest, null: false
       t.text :other_notice
