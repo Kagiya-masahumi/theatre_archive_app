@@ -64,9 +64,9 @@
                 <div class="media-left">
                   <figure class="image is-48x48">
                     <% link_to group_path(perform.group.id) do %>
-                      <% if perform.group.image.attached? %>
-                        <%= image_tag perform.group.image.to_s %>
-                      <% end %>
+                      
+                        <%= image_tag perform.group.image %>
+                    
                     <% end %>
                   </figure>
                 </div>

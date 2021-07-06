@@ -45,6 +45,7 @@ class PerformStepsController < ApplicationController
 
     begin
       if @performance.save
+        # binding.pry
       # 例外が発生する可能性のあるコード
 
         flash[:notice] = "公演の投稿が完了しました"

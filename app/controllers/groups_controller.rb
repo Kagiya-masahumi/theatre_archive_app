@@ -7,8 +7,9 @@ class GroupsController < ApplicationController
     end
   
     def show
+      @performances = Performance.all.order("created_at DESC")
+      # @performance = Performance.find(params[:id])
       
-      @performances = current_group.performances
     end
   
     def edit

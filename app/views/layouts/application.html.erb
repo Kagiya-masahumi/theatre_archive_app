@@ -37,7 +37,11 @@
       </div>
       <%# binding.pry %>
       <%if user_signed_in? %>
-      <div class="navbar-end">
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-item">
+            <%= link_to "劇団一覧", groups_path, class: "navbar-item button is-warning is-light"%>
+        </div>
+        <div class="navbar-end">
         <div class="navbar-item">
           <div class="field is-grouped">
             <p class="control">
@@ -52,7 +56,11 @@
           </div>
         </div>
       </div>
-      <% elsif group_signed_in? %>
+
+
+
+      
+      <% elsif group_signed_in?  %>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
           <div class="navbar-item">
             <%= link_to "劇団一覧", groups_path, class: "navbar-item button is-warning is-light"%>
