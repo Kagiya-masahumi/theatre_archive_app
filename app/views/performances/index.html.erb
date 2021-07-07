@@ -77,7 +77,11 @@
                   <p>料金：<%= perform.price %>円</p>
                 </div>
                 <% if user_signed_in? %>
-                  <%= link_to '購入する', order_performance_path(perform.id), method: :post %>
+                  <% if @card.id != nil %>
+                    <%= link_to '購入する', order_performance_path(perform.id), method: :post %>
+                  <% else %>
+                    <%= "動画はカードの登録後に購入できます。"%>
+                  <% end %>
                 <% end %>
               </div>
               
