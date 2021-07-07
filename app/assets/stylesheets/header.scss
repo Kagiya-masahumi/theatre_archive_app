@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   background: url('globe-theatre.png');
-  background-size: cover;
+  background-size: contain;
   background-position: 50% 10%; 
   position: relative;
 }
@@ -29,7 +29,7 @@
 .header-message{
   position:absolute;
   text-align: center;
-  top:43%;
+  top: 39%;
   left:50%;
   transform:translate(-50%,-50%);
   width:97%;
@@ -69,6 +69,10 @@
   flex-wrap: wrap;
   width: 100%;
   padding: 1vh 0;
+}
+
+.navbar {
+  min-height: rem;
 }
 
 .lists-left {
@@ -118,4 +122,35 @@
 .sign-up {
   text-decoration: none;
   color: #333333;
+}
+
+.outline {
+  display        : inline-block;
+  color          : #990000;            /* 文字の色 */
+  // font-size      : 36pt;               /* 文字のサイズ */
+  letter-spacing : 3.5px;                /* 文字間 */
+  text-shadow    : 
+       2px  2px 1px #257942,
+      -2px  2px 1px rgba(0, 157, 191, 0.72),
+       2px -2px 1px #e8d174,
+      -2px -2px 1px rgba(0, 157, 191, 0.72),
+       2px  0px 1px rgba(0, 157, 191, 0.72),
+       0px  2px 1px rgba(0, 157, 191, 0.72),
+      -2px  0px 1px rgba(0, 157, 191, 0.72),
+       0px -2px 1px rgba(0, 157, 191, 0.72);        /* 文字の影 */
+}
+
+.outline2{
+  display        : inline-block;
+  color          : #000000;            /* 文字の色 */
+  letter-spacing : 3.8px;                /* 文字間 */
+  text-shadow    : 
+       2px  2px 1px rgba(153, 153, 153, 0.62),
+      -2px  2px 1px rgba(153, 153, 153, 0.62),
+       2px -2px 1px rgba(153, 153, 153, 0.62),
+      -2px -2px 1px rgba(153, 153, 153, 0.62),
+       2px  0px 1px rgba(153, 153, 153, 0.62),
+       0px  2px 1px rgba(153, 153, 153, 0.62),
+      -2px  0px 1px rgba(153, 153, 153, 0.62),
+       0px -2px 1px rgba(153, 153, 153, 0.62);        /* 文字の影 */
 }
