@@ -57,7 +57,7 @@
           <%= render "performances/performance", perform: perform %>
           </div>
 
-                </div>
+                </div> <%#レイアウトの保持のため必須%>
           <div class="title is-centered">『<%= link_to perform.title, performance_path(perform.id) %>』</div>
             <div class="card-content">
               <div class="media">

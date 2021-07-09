@@ -8,8 +8,7 @@ class GroupsController < ApplicationController
   
     def show
       @performances = Performance.all.order("created_at DESC")
-      
-     
+
     end
   
     def edit
