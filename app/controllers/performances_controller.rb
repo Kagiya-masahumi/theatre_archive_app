@@ -1,6 +1,7 @@
 class PerformancesController < ApplicationController
   before_action :authenticate_group!,except: [:index,:show, :order]
   before_action :set_performance, only: [:show, :edit, :update, :order]
+  before_action :authenticate_user!, except:[:index]
   
   
 
@@ -8,8 +9,7 @@ class PerformancesController < ApplicationController
     @performances = Performance.all.order("created_at DESC")
     @groups = Group.all
     @user = User.all
-    if user_signed_in?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    if user_signed_in? 
       card = Card.find_by(user_id: current_user.id)
       redirect_to new_card_path and return unless card.present?
       customer = Payjp::Customer.retrieve(card.customer_id) # 先程のカード情報を元に、顧客情報を取得
@@ -31,9 +31,6 @@ class PerformancesController < ApplicationController
     @comment = Comment.new
     @comments = @performance.comments.includes(:user)
     
-    if user_signed_in? || group_signed_in? != true
-      redirect_to root_path ,alert: "ログイン後に閲覧できます"
-    end
   end
 
   def edit
