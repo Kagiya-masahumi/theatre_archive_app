@@ -3,12 +3,8 @@ class Performance < ApplicationRecord
     return self.images[input].variant(resize: '300x300!').processed
   end
   mount_uploader :video, CloudinaryImageUploader
-
-
   acts_as_taggable
   
-
-
   with_options presence: true do
     validates :title
     validates :price
