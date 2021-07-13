@@ -14,10 +14,9 @@
 * [ローカルでの動作方法](#ローカルでの動作方法)
 
 <br>
-<br>
+
 # アプリケーション名
-<br>
-<strong>『Theatre Earth』</strong>
+## オンライン演劇アーカイブ　『Theatre Earth』
 <br>
 <br>
 <br>
