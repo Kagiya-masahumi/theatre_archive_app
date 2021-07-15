@@ -73,10 +73,10 @@
                       <article class="panel is-link">
                         <p class="panel-heading">
                           <% if @performance.image.attached?%>
-                            <%= image_tag  @performance.image %>
+                            <%= ex_image_tag  @performance.image %>
                           <% end %>
                           <% if @performance.group.image.attached?%>
-                            By   <%= image_tag @performance.group.image %>
+                            By   <%= ex_image_tag @performance.group.image %>
                           <% end %>
                         </p>
                       </article>

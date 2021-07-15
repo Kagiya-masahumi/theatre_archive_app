@@ -13,7 +13,7 @@
                 <figure class="image">
                   <%= link_to group_path(group) do %>
                     <% if group.image.attached?%>
-                      <%= image_tag group.image, class: "profile_image is-rounded" %>
+                      <%= ex_image_tag group.image, class: "profile_image is-rounded" %>
                     <% end %>
                   <% end %>
                 </figure>

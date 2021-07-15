@@ -26,7 +26,7 @@
           <div class="column is-4">
             <figure class="image is-150"  style="margin-left: auto; margin-right: auto;">
               <% if @group.image.attached?%>
-                <%= image_tag @group.image, class: "profile_image is-rounded" %>
+                <%= ex_image_tag @group.image, class: "profile_image is-rounded" %>
               <% end %>
             </figure>
           </div>
@@ -103,7 +103,7 @@
                   <figure class="image is-48x48">
                     <% link_to group_path(perform.group.id) do %>
                       <% if perform.group.image.attached? %>
-                        <%= image_tag perform.group.image %>
+                        <%= ex_image_tag perform.group.image %>
                       <% end %>
                     <% end %>
                   </figure>
