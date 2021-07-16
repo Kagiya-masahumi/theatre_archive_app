@@ -98,6 +98,10 @@
 
 ## 団体ユーザー
 - 公演作品の投稿機能
+必要な
+[![Image from Gyazo](https://i.gyazo.com/4af7e34056294bb52c74e26c5f2a52b8.gif)](https://gyazo.com/4af7e34056294bb52c74e26c5f2a52b8)
+
+[![Image from Gyazo](https://i.gyazo.com/8f242a966016343222aa00ae092928eb.gif)](https://gyazo.com/8f242a966016343222aa00ae092928eb)
 - 投稿した作品の編集
 - 投稿作品の削除
 - 

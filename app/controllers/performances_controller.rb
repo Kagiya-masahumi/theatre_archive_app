@@ -1,7 +1,7 @@
 class PerformancesController < ApplicationController
   before_action :authenticate_group!,except: [:index,:show, :order]
   before_action :set_performance, only: [:show, :edit, :update, :order]
-  before_action :authenticate_user!, except:[:index]
+  before_action :authenticate_user!, except:[:index,:show]
   
   
 
@@ -15,9 +15,6 @@ class PerformancesController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id) # 先程のカード情報を元に、顧客情報を取得
       @card = customer.cards.first
     end
-
-    
-
     if params[:tag]
       @performances = Performance.tagged_with(params[:tag]).order("created_at DESC")
     else
@@ -30,7 +27,10 @@ class PerformancesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @performance.comments.includes(:user)
-    
+    if user_signed_in? != true && group_signed_in? != true
+      redirect_to new_user_registration_path
+    end
+
   end
 
   def edit
