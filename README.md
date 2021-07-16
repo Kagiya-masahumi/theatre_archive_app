@@ -117,10 +117,12 @@
 
 - コメント機能
 動画にコメントが残せます。
+[![Image from Gyazo](https://i.gyazo.com/d95a2b56fb8730ea0fc530cfdff3c38b.gif)](https://gyazo.com/d95a2b56fb8730ea0fc530cfdff3c38b)
 
 
 - 購入機能
 動画を購入できます
+[![Image from Gyazo](https://i.gyazo.com/51a7d2767548ac644b1cb94a299d8fdb.gif)](https://gyazo.com/51a7d2767548ac644b1cb94a299d8fdb)
 
 
 ---
@@ -141,7 +143,6 @@
 [![Image from Gyazo](https://i.gyazo.com/4b2c9726af7fa563e2b981da22e77604.gif)](https://gyazo.com/4b2c9726af7fa563e2b981da22e77604)
 
 
-
 ---
 
 
@@ -152,6 +153,10 @@
 # データベース設計
 **ER図**
 <img width="715" alt="スクリーンショット 2021-07-13 12 52 09" src="https://user-images.githubusercontent.com/78534551/125387715-4df14d00-e3d9-11eb-8f39-587b7d128443.png">
+
+# 画面遷移図
+![名称未設定 (1)](https://user-images.githubusercontent.com/78534551/125890518-c6c56333-ff3e-48ed-b9f6-d225d5ece797.png)
+
 
 
 # ローカルでの動作方法
