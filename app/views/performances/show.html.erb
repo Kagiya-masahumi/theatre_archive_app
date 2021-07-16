@@ -24,7 +24,7 @@
                         <th>『<%= @performance.title %>』</th>
                       </tr>
                       <tr>
-                        <td><%= simple_format @performance.title %>※ここも</td>
+                        <td><%= simple_format @performance.title %></td>
                       </tr>
                       <tr>
                         <td>
@@ -52,9 +52,8 @@
                             <div class= "favorite" id="performance-link-<%= @performance.id %>">
                               <%= render "performances/performance", perform: @performance %>
                             </div>
-                            <% if user_signed_in? %>
-                              <%= link_to '購入する', order_performance_path(@performance.id), method: :post %>
-                            <% elsif group_signed_in? %>
+                            
+                            <% if group_signed_in? %>
                               <% if @performance.group.id == current_group.id %>
                                 <%= link_to "編集画面へ", edit_performance_path(@performance), class: "button is-success" %>
                                 <%= link_to "この作品を削除する", performance_path(@performance), method: :delete, data: { confirm: "削除しますか？" },class: "button is-danger" %>
