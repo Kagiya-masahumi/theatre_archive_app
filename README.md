@@ -45,7 +45,7 @@
 <br>
 
 # URL
-デプロイ済みのURLを記述。デプロイが済んでいない場合は、デプロイが完了次第記述すること
+https://theatre-archive-app.herokuapp.com/
 
 # テスト用アカウント
 ## 個人ユーザー
