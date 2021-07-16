@@ -88,7 +88,6 @@
 - 画像投稿
 - Cloudinaryの実装
 - Herokuへのデプロイ
-
 - 作品投稿機能（団体ユーザー）
 - 作品編集機能（団体ユーザー）
 - 作品削除機能（団体ユーザー）
@@ -111,21 +110,19 @@
 
 ### 団体
 
-- 作品一覧機能
-### 個人
-
-### 団体
 
 - マイページ機能
 ### 個人
 
 ### 団体
+[![Image from Gyazo](https://i.gyazo.com/a03459709ac2da24da1f6606fd92c581.gif)](https://gyazo.com/a03459709ac2da24da1f6606fd92c581)
 
 
 
 ## 個人ユーザー
 - 「お気に入り」機能
 お気に入りとしてマイページに保存できます。
+[![Image from Gyazo](https://i.gyazo.com/7645894bbcf87b02bbf1e67f1473c067.gif)](https://gyazo.com/7645894bbcf87b02bbf1e67f1473c067)
 
 
 - コメント機能
@@ -149,8 +146,10 @@
 [![Image from Gyazo](https://i.gyazo.com/f3af2c2fa1e6facd0a33fb56f4d9d45c.gif)](https://gyazo.com/f3af2c2fa1e6facd0a33fb56f4d9d45c)
 - 投稿した作品の編集
 投稿者本人のみ、作品の詳細情報を編集出来ます。
+[![Image from Gyazo](https://i.gyazo.com/6b1622f3a13bc93c6b741598ac12faf0.gif)](https://gyazo.com/6b1622f3a13bc93c6b741598ac12faf0)
 - 投稿作品の削除
 投稿者本人のみ、作品を削除出来ます。
+[![Image from Gyazo](https://i.gyazo.com/4b2c9726af7fa563e2b981da22e77604.gif)](https://gyazo.com/4b2c9726af7fa563e2b981da22e77604)
 
 
 
