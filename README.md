@@ -150,6 +150,7 @@ https://theatre-archive-app.herokuapp.com/
 
 # 実装予定の機能
 ・パンくずリスト
+。劇場とGoogleMapAPIの連携
 
 # データベース設計
 **ER図**

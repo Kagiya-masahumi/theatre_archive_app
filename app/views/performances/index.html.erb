@@ -20,7 +20,7 @@
 </section>
 
 
-<p>劇団のロゴを出現させたい</p>
+<%# <p>劇団のロゴを出現させたい</p> %>
 <div class="tag_container">
   <div id="tag_cloud" class="tag_cloud">
     <% tag_cloud Performance.tag_counts, %w{s m l} do |tag, css_class| %>
@@ -39,7 +39,7 @@
           <div class="card-image">
             <figure class="image is-4by3">
               <%= link_to performance_path(perform.id) do %>
-                <% if perform.image.attached?%>
+
                   <%= ex_image_tag perform.image %>
                   <% if user_signed_in? %>
 
@@ -49,7 +49,7 @@
                       </div>
                     <% end %>
                   <% end %>
-                <% end %>
+                
               <% end %>
             </figure>
 
@@ -63,15 +63,10 @@
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <% link_to group_path(perform.group.id) do %>
-                      
-                        <%= ex_image_tag perform.group.image %>
-                    
-                    <% end %>
+                    <%= link_to ex_image_tag(perform.group.image) ,group_path(perform.group.id)  %>
                   </figure>
                 </div>
                 <div class="media-content">
-                  
                   <div class="content">主宰：<%= link_to perform.group.name, group_path(perform.group) %></div>
                     <p>Tags:  <%= raw perform.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
                   <p>料金：<%= perform.price %>円</p>

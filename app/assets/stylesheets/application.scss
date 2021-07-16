@@ -16,6 +16,17 @@
 
  @import "bulma";
 
+ .top-logo{
+   height: 130px;
+   width: 180px;
+ }
+
+ .navbar{
+  background: linear-gradient(-225deg, #2a08a5 0%, #3d9fdb 56%, #0b8347 100%);  
+ }
+
+ 
+
 .notification:not(:last-child){
   margin-bottom: 0;
 }
