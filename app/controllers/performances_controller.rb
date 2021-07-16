@@ -1,7 +1,6 @@
 class PerformancesController < ApplicationController
   before_action :authenticate_group!,except: [:index,:show, :order]
   before_action :set_performance, only: [:show, :edit, :update, :order]
-  before_action :authenticate_user!, except:[:index,:show]
   
   
 
